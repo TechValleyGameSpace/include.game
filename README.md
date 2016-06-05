@@ -1,10 +1,12 @@
 What Taro Omiya got working so far:
 
+
+== First-Time Setup ==
 1) Make sure you have VirtualBox (a virtual machine) and Vagrant (program that downloads, configures, and runs virtual machines) installed.
 
 2) On command line (Powershell, Terminal, etc.), change directory to this project's "vagrant" folder.
 
-3) Run "vagrant up && vagrant reload"
+3) Run "vagrant plugin install vagrant-vbguest && vagrant up && vagrant reload"
 
 4) Once the commands above runs to completion, you can SSH into that virtual machine via "vagrant ssh"
 
@@ -12,6 +14,19 @@ What Taro Omiya got working so far:
 
 That's it for now.  The virtual machine doesn't even host the Ruby on Rails website yet, so that's still in the works.
 
+== Closing Virtual Machine ==
+1) On command line (Powershell, Terminal, etc.), change directory to this project's "vagrant" folder.
 
-For your own development:
+2) Run "vagrant halt"
+
+== Opening Virtual Machine After Setup ==
+1) On command line (Powershell, Terminal, etc.), change directory to this project's "vagrant" folder.
+
+2) Run "vagrant reload"
+
+
+== Local Development Notes ==
+
+I'm using Eclipse + Aptana plugin for now.
+
 Gemfile - After Ruby is installed in your system, run "bundle install" to install all ruby dependencies necessary to get this project started.
