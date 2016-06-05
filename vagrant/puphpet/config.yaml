@@ -286,13 +286,16 @@ ruby:
             bundler: '1'
             version: 2.3.0
             gems:
+                - activesupport
+                - rdoc
+                - rake
                 - rails
                 - paperclip
-                - RubyZip
-                - Unicorn
-                - Omniauth
-                - Omniauth-Facebook
-                - Geocoder
+                - rubyzip
+                - unicorn
+                - omniauth
+                - omniauth-facebook
+                - geocoder
 python:
     install: '1'
     packages: {  }
