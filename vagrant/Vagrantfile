@@ -67,12 +67,13 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     # Update ubuntu
     sudo apt-get update
+    sudo apt-get --assume-yes install aptitude
     
     # Upgrade any outdated packages ubuntu
-    sudo aptitude safe-upgrade
+    sudo aptitude --assume-yes safe-upgrade
     
     # Install Node.js and Nginx
-    sudo aptitude install nodejs nginx git
+    sudo aptitude --assume-yes install nodejs nginx
     
     # Indicate to RubyGems not to generate documentation
     echo "gem: --no-document" >> ~/.gemrc
@@ -84,6 +85,7 @@ Vagrant.configure(2) do |config|
     \curl -sSL https://get.rvm.io | bash -s stable --rails
     
     # Setup ruby to use the latest stable version
+    source /home/ubuntu/.rvm/scripts/rvm
     rvm --default use ruby-2.3.0
     rvm gemset use global
     
