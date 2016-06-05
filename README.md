@@ -6,11 +6,13 @@ What Taro Omiya got working so far:
 
 2) On command line (Powershell, Terminal, etc.), change directory to this project's "vagrant" folder.
 
-3) Run "vagrant plugin install vagrant-vbguest && vagrant up && vagrant reload"
+3) If you haven't done it already, download Vagrant's vbguest plugin, via "vagrant plugin install vagrant-vbguest"
 
-4) Once the commands above runs to completion, you can SSH into that virtual machine via "vagrant ssh"
+4) Run "vagrant up"
 
-5) Doing so, you'll find folder "include.game", which links directly to the "rubyonrails" folder in this project.
+5) Once the commands above runs to completion, you can SSH into that virtual machine via "vagrant ssh"
+
+6) Doing so, you'll find folder "include.game", which links directly to the "rubyonrails" folder in this project.
 
 That's it for now.  The virtual machine doesn't even host the Ruby on Rails website yet, so that's still in the works.
 
