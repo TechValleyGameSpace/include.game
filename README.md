@@ -2,6 +2,7 @@ What Taro Omiya got working so far:
 
 
 == First-Time Setup ==
+
 1) Make sure you have VirtualBox (a virtual machine) and Vagrant (program that downloads, configures, and runs virtual machines) installed.
 
 2) On command line (Powershell, Terminal, etc.), change directory to this project's "vagrant" folder.
@@ -17,11 +18,13 @@ What Taro Omiya got working so far:
 That's it for now.  The virtual machine doesn't even host the Ruby on Rails website yet, so that's still in the works.
 
 == Closing Virtual Machine ==
-1) On command line (Powershell, Terminal, etc.), change directory to this project's "vagrant" folder.
+
+1) On command line (Powershell, Terminal, etc.), make sure you're not SSHing to the virtual machine.  If you are, run "exit".
 
 2) Run "vagrant halt"
 
 == Opening Virtual Machine After Setup ==
+
 1) On command line (Powershell, Terminal, etc.), change directory to this project's "vagrant" folder.
 
 2) Run "vagrant reload"
