@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 # Indicate to RubyGems not to generate documentation
-echo "gem: --no-document" >> ~/.gemrc
+cd /home/ubuntu
+echo "gem: --no-document" >> /home/ubuntu/.gemrc
 
 # Update ubuntu
 sudo apt-get update
-#sudo apt-get --assume-yes install aptitude
+sudo apt-get --assume-yes install aptitude
 
 # Upgrade any outdated packages ubuntu
 sudo aptitude --assume-yes safe-upgrade
