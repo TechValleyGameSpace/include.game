@@ -11,13 +11,13 @@ sudo apt-get update
 sudo aptitude --assume-yes safe-upgrade
 
 # Install Node.js and Nginx
-#sudo aptitude --assume-yes install nodejs nginx
+sudo aptitude --assume-yes install nodejs nginx
 
 # Sign this machine with the proper keyserver
-#gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
 # Start installing RVM with ruby on rails
-#\curl -sSL https://get.rvm.io | bash -s stable --ruby
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 # Setup ruby to use the latest stable version
 source /home/ubuntu/.rvm/scripts/rvm
@@ -36,7 +36,7 @@ gem install unicorn paperclip omniauth omniauth-facebook geocoder
 sudo service nginx start
 
 # set up nginx server
-sudo cp /vagrant/.provision/nginx/nginx.conf /etc/nginx/sites-available/site.conf
+sudo cp /home/ubuntu/vagrant/.provision/nginx/nginx.conf /etc/nginx/sites-available/site.conf
 sudo chmod 644 /etc/nginx/sites-available/site.conf
 sudo ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/site.conf
 sudo service nginx restart
@@ -45,4 +45,4 @@ sudo service nginx restart
 sudo rm -Rf /var/www
 
 # symlink /var/www => /vagrant
-ln -s /web /var/www
+ln -s /home/ubuntu/web /var/www
