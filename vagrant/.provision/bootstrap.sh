@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Indicate to RubyGems not to generate documentation
-cd /home/ubuntu
-echo "gem: --no-document" >> /home/ubuntu/.gemrc
-
 # Update ubuntu
 sudo apt-get update
 sudo apt-get --assume-yes install aptitude
@@ -18,20 +14,29 @@ sudo aptitude --assume-yes install nodejs nginx
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
 # Start installing RVM with ruby on rails
-\curl -sSL https://get.rvm.io | bash -s stable --ruby
+\curl -L https://get.rvm.io | sudo bash -s stable --rails
 
 # Setup ruby to use the latest stable version
-source /home/ubuntu/.rvm/scripts/rvm
+source /usr/local/rvm/scripts/rvm
 rvm --default use ruby-2.3.0
 rvm gemset use global
 
+# Update bashrc file to automatically setup RVM on login
+sudo echo "unset rvm_path" >> /home/ubuntu/.bashrc
+sudo echo "unset GEM_HOME" >> /home/ubuntu/.bashrc
+sudo echo "source /usr/local/rvm/scripts/rvm" >> /home/ubuntu/.bashrc
+sudo echo "rvm --default use ruby-2.3.0" >> /home/ubuntu/.bashrc
+sudo echo "rvm gemset use global" >> /home/ubuntu/.bashrc
+
 # Update Gems to the latest version
-gem update --system
-gem update
+# FIXME: we don't have write access to /usr/local/rvm/scripts/rvm
+#gem update --system
+#gem update
 
 # Install the required ruby gems
-gem install bundler nokogiri rails
-gem install unicorn paperclip omniauth omniauth-facebook geocoder
+# FIXME: we don't have write access to /usr/local/rvm/scripts/rvm
+#gem install bundler nokogiri rails
+#gem install unicorn paperclip omniauth omniauth-facebook geocoder
 
 # Start Nginx
 sudo service nginx start
@@ -40,10 +45,14 @@ sudo service nginx start
 sudo cp /home/ubuntu/vagrant/.provision/nginx/nginx.conf /etc/nginx/sites-available/site.conf
 sudo chmod 644 /etc/nginx/sites-available/site.conf
 sudo ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/site.conf
+
+# Reset Nginx, and bind it as something to run on boot-up
 sudo service nginx restart
+sudo update-rc.d nginx defaults
 
 # clean /var/www
 sudo rm -Rf /var/www
 
 # symlink /var/www => /vagrant
-ln -s /home/ubuntu/web /var/www
+sudo ln -s /home/ubuntu/web /var/www
+
