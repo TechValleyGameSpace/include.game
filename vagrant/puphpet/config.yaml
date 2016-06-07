@@ -90,7 +90,7 @@ users_groups:
     groups:
         - tvgs
         - wheel
-        - www
+        - www-data
     users:
         - tvgs
 locale:
@@ -120,10 +120,10 @@ nginx:
     upstreams: {  }
     vhosts:
         nxv_n6mth5uicwnc:
-            server_name: includegame
+            server_name: include.game
             server_aliases:
-                - include.game
-            www_root: /var/www/html
+                - www.include.game
+            www_root: /var/www/include
             listen_port: '80'
             index_files:
                 - index.html
@@ -367,7 +367,7 @@ mysql:
             privileges:
                 - ALL
 postgresql:
-    install: '0'
+    install: '1'
     settings:
         global:
             encoding: UTF8
@@ -401,19 +401,9 @@ redis:
     settings:
         port: '6379'
 sqlite:
-    install: '1'
-    adminer: '1'
-    databases:
-        sqlitenuad_dpagqob7p93k:
-            name: includegame_development
-            owner: tvgs
-            group: tvgs
-            sql_file: ''
-        sqlitenuad_5xoaopyiyq1v:
-            name: includegame_test
-            owner: tvgs
-            group: tvgs
-            sql_file: ''
+    install: '0'
+    adminer: 0
+    databases: { }
 mailhog:
     install: '0'
     settings:
