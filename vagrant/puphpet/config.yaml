@@ -21,14 +21,14 @@ vagrantfile:
                 machines:
                     vflm_kgoza16xa21c:
                         id: include
-                        hostname: includegame
+                        hostname: include.game
                         network:
                             private_network: 55.55.55.5
                             forwarded_port:
                                 vflmnfp_wy3m4v7cts46:
                                     host: '8080'
                                     guest: '22'
-                        memory: '256'
+                        memory: '512'
                         cpus: '1'
         provision:
             puppet:
@@ -39,7 +39,7 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
             vflsf_fkl4dcmd9lht:
-                source: ./
+                source: ..
                 target: /includegame
                 sync_type: default
                 smb:
@@ -123,7 +123,7 @@ nginx:
             server_name: includegame
             server_aliases:
                 - include.game
-            www_root: /var/www/include
+            www_root: /var/www/html
             listen_port: '80'
             index_files:
                 - index.html
@@ -224,9 +224,9 @@ letsencrypt:
         email: ''
     domains: {  }
 php:
-    install: '0'
+    install: '1'
     settings:
-        version: '56'
+        version: '70'
     modules:
         php:
             - cli
@@ -293,7 +293,6 @@ ruby:
                 - deep_merge
                 - activesupport
                 - vine
-                - pg
                 - rails@4.2.6
                 - unicorn
                 - paperclip
@@ -368,7 +367,7 @@ mysql:
             privileges:
                 - ALL
 postgresql:
-    install: '1'
+    install: '0'
     settings:
         global:
             encoding: UTF8
@@ -402,9 +401,19 @@ redis:
     settings:
         port: '6379'
 sqlite:
-    install: '0'
-    adminer: 0
-    databases: {  }
+    install: '1'
+    adminer: '1'
+    databases:
+        sqlitenuad_dpagqob7p93k:
+            name: includegame_development
+            owner: tvgs
+            group: tvgs
+            sql_file: ''
+        sqlitenuad_5xoaopyiyq1v:
+            name: includegame_test
+            owner: tvgs
+            group: tvgs
+            sql_file: ''
 mailhog:
     install: '0'
     settings:
