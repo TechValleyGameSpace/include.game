@@ -1,0 +1,61 @@
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :header_image %><br>
+    <%= f.text_field :header_image %>
+  </div>
+  <div class="field">
+    <%= f.label :icon_image %><br>
+    <%= f.text_field :icon_image %>
+  </div>
+  <div class="field">
+    <%= f.label :start %><br>
+    <%= f.date_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br>
+    <%= f.date_select :end %>
+  </div>
+  <div class="field">
+    <%= f.label :submission_grace_period %><br>
+    <%= f.date_select :submission_grace_period %>
+  </div>
+  <div class="field">
+    <%= f.label :submission_open %><br>
+    <%= f.check_box :submission_open %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :submitted %><br>
+    <%= f.date_select :submitted %>
+  </div>
+  <div class="field">
+    <%= f.label :updated %><br>
+    <%= f.date_select :updated %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

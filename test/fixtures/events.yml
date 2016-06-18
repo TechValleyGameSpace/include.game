@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  header_image: 
+  icon_image: 
+  start: 2016-06-17
+  end: 2016-06-17
+  submission_grace_period: 2016-06-17
+  submission_open: false
+  status: 1
+  submitted: 2016-06-17
+  updated: 2016-06-17
+
+two:
+  title: MyString
+  description: MyText
+  header_image: 
+  icon_image: 
+  start: 2016-06-17
+  end: 2016-06-17
+  submission_grace_period: 2016-06-17
+  submission_open: false
+  status: 1
+  submitted: 2016-06-17
+  updated: 2016-06-17

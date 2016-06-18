@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @submission.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @submission.description %>
+</p>
+
+<p>
+  <strong>Header image:</strong>
+  <%= @submission.header_image %>
+</p>
+
+<p>
+  <strong>Icon image:</strong>
+  <%= @submission.icon_image %>
+</p>
+
+<p>
+  <strong>Submitted:</strong>
+  <%= @submission.submitted %>
+</p>
+
+<p>
+  <strong>Updated:</strong>
+  <%= @submission.updated %>
+</p>
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :submissions
+  resources :teams
+  resources :users
+  resources :events
   get 'homepage/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Header image:</strong>
+  <%= @event.header_image %>
+</p>
+
+<p>
+  <strong>Icon image:</strong>
+  <%= @event.icon_image %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @event.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @event.end %>
+</p>
+
+<p>
+  <strong>Submission grace period:</strong>
+  <%= @event.submission_grace_period %>
+</p>
+
+<p>
+  <strong>Submission open:</strong>
+  <%= @event.submission_open %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @event.status %>
+</p>
+
+<p>
+  <strong>Submitted:</strong>
+  <%= @event.submitted %>
+</p>
+
+<p>
+  <strong>Updated:</strong>
+  <%= @event.updated %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
