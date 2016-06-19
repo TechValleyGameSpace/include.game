@@ -1,0 +1,4 @@
+puphpet/config-custom.yaml
+puphpet/files
+.vagrant
+/*.log
