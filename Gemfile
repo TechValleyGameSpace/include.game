@@ -37,13 +37,21 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 3.1.0'
-gem 'capistrano-bundler', '~> 1.1.2'
-gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-rvm', github: "capistrano/rvm"
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-bundler', '>= 1.1.2'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+
+#gem 'capistrano', '~> 3.1.0'
+#gem 'capistrano-bundler', '~> 1.1.2'
+#gem 'capistrano-rails', '~> 1.1.1'
+#gem 'capistrano-rvm', github: "capistrano/rvm"
 
 # Use Passenger to bind with Nginx
 gem 'passenger'
+
+# Use postgress for production
+#gem 'pg', '~> 0.15'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,9 +68,6 @@ group :development do
 end
 
 group :production do
-  # Use postgress for production
-  gem 'pg', '~> 0.15'
-
   # Use Unicorn as the app server
   # gem 'unicorn'
 end
