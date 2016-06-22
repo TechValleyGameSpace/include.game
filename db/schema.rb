@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160622041218) do
   end
 
   add_index "submissions", ["event_id"], name: "index_submissions_on_event_id"
+  add_index "submissions", ["name"], name: "index_submissions_on_name"
 
   create_table "team_role_in_submissions", force: :cascade do |t|
     t.text     "role"
@@ -60,6 +61,8 @@ ActiveRecord::Schema.define(version: 20160622041218) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "teams", ["name"], name: "index_teams_on_name"
 
   create_table "user_role_in_events", force: :cascade do |t|
     t.text     "message"
@@ -99,7 +102,7 @@ ActiveRecord::Schema.define(version: 20160622041218) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "realname"
+    t.string   "real_name"
     t.text     "description"
     t.binary   "profile_image"
     t.datetime "created_at",      null: false
