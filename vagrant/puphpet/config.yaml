@@ -3,8 +3,8 @@ vagrantfile:
     vm:
         provider:
             local:
-                box: puphpet/ubuntu1404-x32
-                box_url: puphpet/ubuntu1404-x32
+                box: puphpet/ubuntu1404-x64
+                box_url: puphpet/ubuntu1404-x64
                 box_version: '0'
                 chosen_virtualizer: virtualbox
                 virtualizers:
@@ -19,16 +19,19 @@ vagrantfile:
                         check_guest_tools: 0
                         update_guest_tools: 0
                 machines:
-                    vflm_kgoza16xa21c:
+                    vflm_g2l14pz7nzau:
                         id: include
                         hostname: include.game
                         network:
                             private_network: 55.55.55.5
                             forwarded_port:
-                                vflmnfp_wy3m4v7cts46:
-                                    host: '8080'
+                                vflmnfp_v0sji9wcijcl:
+                                    host: '3000'
+                                    guest: '3000'
+                                vflmnfp_o529zzdcj8if:
+                                    host: '6647'
                                     guest: '22'
-                        memory: '512'
+                        memory: '1024'
                         cpus: '1'
         provision:
             puppet:
@@ -38,9 +41,9 @@ vagrantfile:
                     - '--verbose'
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
-            vflsf_fkl4dcmd9lht:
-                source: ..
-                target: /includegame
+            vflsf_76gltp43i7dy:
+                source: ../
+                target: /var/www/include
                 sync_type: default
                 smb:
                     smb_host: ''
@@ -84,23 +87,22 @@ vagrantfile:
         no_proxy: ''
 server:
     install: '1'
-    packages: {  }
+    packages:
+        - aptitude
+        - nano
+        - libpq-dev
+        - build-essential
 users_groups:
     install: '1'
-    groups:
-        - tvgs
-        - wheel
-        - www-data
-    users:
-        - tvgs
+    groups: {  }
+    users: {  }
 locale:
     install: '1'
     settings:
         default_locale: en_US.UTF-8
         locales:
-            - en_GB.UTF-8
             - en_US.UTF-8
-        timezone: America/New_York
+        timezone: US/Eastern
 firewall:
     install: '1'
     rules: {  }
@@ -118,54 +120,7 @@ nginx:
         proxy_read_timeout: 600s
         names_hash_bucket_size: 128
     upstreams: {  }
-    vhosts:
-        nxv_n6mth5uicwnc:
-            server_name: include.game
-            server_aliases:
-                - www.include.game
-            www_root: /var/www/include
-            listen_port: '80'
-            index_files:
-                - index.html
-                - index.htm
-                - index.php
-            client_max_body_size: 1m
-            ssl: '1'
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_port: '443'
-            ssl_protocols: ''
-            ssl_ciphers: ''
-            rewrite_to_https: '1'
-            spdy: '1'
-            locations:
-                nxvl_2h56n60xdl5v:
-                    location: /
-                    try_files:
-                        - $uri
-                        - $uri/
-                        - /index.php$is_args$args
-                    fastcgi: ''
-                    fastcgi_index: ''
-                    fastcgi_split_path: ''
-                    proxy: ''
-                    proxy_redirect: ''
-                nxvl_tbgo9xvts6dv:
-                    location: '~ \.php$'
-                    try_files:
-                        - $uri
-                        - $uri/
-                        - /index.php$is_args$args
-                    fastcgi: '127.0.0.1:9000'
-                    fastcgi_index: index.php
-                    fastcgi_split_path: '^(.+\.php)(/.*)$'
-                    fast_cgi_params_extra:
-                        - 'SCRIPT_FILENAME $request_filename'
-                        - 'APP_ENV dev'
-                    set:
-                        - '$path_info $fastcgi_path_info'
-                    proxy: ''
-                    proxy_redirect: ''
+    vhosts: {  }
     proxies: {  }
 apache:
     install: '0'
@@ -181,7 +136,7 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_w8w441pvztl0:
+        av_g1hfs5cpk3rb:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -200,7 +155,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_n5pzrst6bcly:
+                avd_vjnxgcd3svys:
                     path: /var/www/awesome
                     options:
                         - Indexes
@@ -212,7 +167,7 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_4h98eqyb9pto:
+                        avdfm_vahw8bx47e6q:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
@@ -241,7 +196,7 @@ php:
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
-        phpfp_g0x0tv11ujnb:
+        phpfp_ojmus855bz30:
             ini:
                 prefix: www
                 listen: '127.0.0.1:9000'
@@ -284,22 +239,16 @@ drush:
 ruby:
     install: '1'
     versions:
-        rv_pjnifa78rjn6:
+        rv_7r2umiygrx0t:
             default: '1'
             bundler: '1'
-            version: 2.3.0
+            version: 2.3.1
             gems:
-                - nokogiri
                 - deep_merge
                 - activesupport
                 - vine
+                - nokogiri
                 - rails@4.2.6
-                - unicorn
-                - paperclip
-                - geocoder
-                - omniauth
-                - omniauth-facebook
-                - rubyzip
 python:
     install: '1'
     packages: {  }
@@ -332,15 +281,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_p9apxn3ewzj3:
+        mariadbnu_d1vkn1gyg5zb:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_qcboftcgddvv:
+        mariadbnd_x7kwnl16khfe:
             name: dbname
             sql: ''
     grants:
-        mariadbng_hlb294rjzw2v:
+        mariadbng_t70u1btooeud:
             user: dbuser
             table: '*.*'
             privileges:
@@ -353,15 +302,15 @@ mysql:
         override_options: {  }
     adminer: 0
     users:
-        mysqlnu_xf26gm2pna19:
+        mysqlnu_1arwtbivxbcq:
             name: dbuser
             password: '123'
     databases:
-        mysqlnd_s6ize54l7yq3:
+        mysqlnd_cfbzd7ambp9f:
             name: dbname
             sql: ''
     grants:
-        mysqlng_hel73xwmhu97:
+        mysqlng_znyfr43kq8r3:
             user: dbuser
             table: '*.*'
             privileges:
@@ -373,18 +322,12 @@ postgresql:
             encoding: UTF8
             version: '9.4'
         server:
-            postgres_password: include_game
-    databases:
-        postsqlnd_nr5hodpq0efo:
-            dbname: includegame_development
-            owner: tvgs
-        postsqlnd_jj6t7yqz7siz:
-            dbname: includegame_test
-            owner: tvgs
+            postgres_password: include.game
+    databases: {  }
     users:
-        postsqlnu_stro6s8m5km0:
+        postsqlnu_ihtnj9y00dwa:
             username: tvgs
-            password: include_game
+            password: include.game
             superuser: '1'
     grants: {  }
     adminer: 0
@@ -401,9 +344,9 @@ redis:
     settings:
         port: '6379'
 sqlite:
-    install: '0'
+    install: '1'
     adminer: 0
-    databases: { }
+    databases: {  }
 mailhog:
     install: '0'
     settings:
@@ -436,7 +379,7 @@ elastic_search:
         version: 2.3.1
         java_install: true
     instances:
-        esi_xs0o6tmo0xk1:
+        esi_rdoidfnfzosr:
             name: es-01
 solr:
     install: '0'
