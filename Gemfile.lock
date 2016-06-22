@@ -128,6 +128,7 @@ GEM
     passenger (5.0.28)
       rack
       rake (>= 0.8.1)
+    pg (0.18.4)
     pkg-config (1.1.7)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -215,6 +216,7 @@ DEPENDENCIES
   omniauth-facebook
   paperclip
   passenger
+  pg (>= 0.15)
   rails (= 4.2.6)
   rubyzip
   sass-rails (~> 5.0)
