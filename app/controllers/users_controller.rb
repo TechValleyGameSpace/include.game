@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  has_secure_password
-  before_filter :authorize, only: [:edit, :update, :destroy, :new, :create]
+  before_filter :authorize, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -18,16 +17,6 @@ class UsersController < ApplicationController
   def new
   end
 
-  def create
-    @user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
-      redirect_to '/'
-    else
-      redirect_to '/users/new'
-    end
-  end
-
   # GET /users/1/edit
   def edit
   end
@@ -36,15 +25,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to '/'
+    else
+      redirect_to '/register'
     end
   end
 

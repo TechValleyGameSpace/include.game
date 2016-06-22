@@ -9,7 +9,7 @@
 <body>
 
 <% if current_user %>
-  <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+  <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
 <% else %>
   <%= link_to 'Login', '/login' %> | <%= link_to 'Register', '/register' %>
 <% end %>

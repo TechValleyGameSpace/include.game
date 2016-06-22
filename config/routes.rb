@@ -11,16 +11,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'homepage#index'
 
-  # Setting up routes for registering a user
-  get '/register' => 'users#new'
-  post '/users' => 'users#create'
-  get '/profile/:id' => 'users#show'
-
   # Setup login
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  # Setting up routes for registering a user
+  get '/register' => 'users#new'
+  post '/users' => 'users#create'
+  get '/profile/:id' => 'users#show'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
