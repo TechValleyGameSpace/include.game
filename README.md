@@ -33,6 +33,7 @@ You can open this project by importing a pre-existing project, and selecting thi
 6. Once connected, change directory to this project using `cd /var/www/include`.
 7. Run `./server.sh`.
 8. Open your favorite web browser on Windows, and go to the URL, `localhost:3000`.
+9. When you're done testing, enter `Ctrl+C` to stop the server.
 
 ## Setting Up The Website's Database Fresh Again
 
@@ -40,6 +41,7 @@ You can open this project by importing a pre-existing project, and selecting thi
 2. If the Webbrick server is running (SSH basically doesn't take any commands), hit the `Ctrl+C` shortcut to stop it.
 3. Run `./reset.sh`.
 8. Open your favorite web browser on Windows, and go to the URL, `localhost:3000`.
+9. When you're done testing, enter `Ctrl+C` to stop the server.
 
 ## Setting Up The Virtual Machine Fresh Again
 
@@ -51,3 +53,4 @@ You can open this project by importing a pre-existing project, and selecting thi
 6. Once connected, change directory to this project using `cd /var/www/include`.
 7. Run `./setup.sh`.
 8. Open your favorite web browser on Windows, and go to the URL, `localhost:3000`.
+9. When you're done testing, enter `Ctrl+C` to stop the server.
