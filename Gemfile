@@ -51,7 +51,7 @@ gem 'capistrano-rvm'
 gem 'passenger'
 
 # Use postgress for production
-#gem 'pg', '~> 0.15'
+gem 'pg', '~> 0.15'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
