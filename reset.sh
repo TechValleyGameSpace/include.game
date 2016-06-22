@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Install gems files under Gemfile
-bundle install
-
-# Create the database
+# Drop and re-create the database
+rake db:drop
 rake db:create
 
 # Run the server as normal

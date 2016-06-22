@@ -1,5 +1,0 @@
-rails g scaffold Event title:string description:text header_image:binary icon_image:binary start:date end:date submission_grace_period:date submission_open:boolean status:integer submitted:date updated:date
-rails g scaffold User title:string description:text profile_image:binary
-rails g scaffold Team title:string description:text team_image:binary
-rails g scaffold Submission title:string description:text header_image:binary icon_image:binary submitted:date updated:date
-
