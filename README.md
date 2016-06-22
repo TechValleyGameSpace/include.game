@@ -1,3 +1,5 @@
+# What Taro Omiya got working so far:
+
 ### Log
 
 * 6/22/16: Finally got a working development vagrant configuration that works for Ruby on Rails!
@@ -6,8 +8,6 @@
 
 Taro Omiya is using [Eclipse](https://eclipse.org/downloads/) + [Aptana plugin](https://marketplace.eclipse.org/content/aptana-studio-3).
 You can open this project by importing a pre-existing project, and selecting this folder for import.
-
-# What Taro Omiya got working so far:
 
 ## First-Time Setup
 
