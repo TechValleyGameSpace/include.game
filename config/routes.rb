@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :submissions
   resources :teams
-  resources :users
+  # resources :users
   resources :events
   get 'homepage/index'
 
@@ -10,6 +10,16 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'homepage#index'
+
+  # Setting up routes for registering a user
+  get '/register' => 'users#new'
+  post '/users' => 'users#create'
+  get '/profile/:id' => 'users#show'
+
+  # Setup login
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,4 +1,5 @@
 class SubmissionsController < ApplicationController
+  before_filter :authorize, only: [:edit, :update, :destroy, :new, :create]
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
 
   # GET /submissions

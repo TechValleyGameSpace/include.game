@@ -58,6 +58,6 @@ test:
 production:
   <<: *default
   database: include_game_production
-  username: postgres
+  username: tvgs
   host: localhost
   password: <%= ENV['INCLUDEGAME_DATABASE_PASSWORD'] %>
