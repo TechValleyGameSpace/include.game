@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  # TODO: add more granularity to authorize, or outright remove this function
   def authorize
     redirect_to '/login' unless current_user
   end

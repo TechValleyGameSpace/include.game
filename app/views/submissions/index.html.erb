@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Name</th>
       <th>Description</th>
       <th>Header image</th>
       <th>Icon image</th>
@@ -18,7 +18,7 @@
   <tbody>
     <% @submissions.each do |submission| %>
       <tr>
-        <td><%= submission.title %></td>
+        <td><%= submission.name %></td>
         <td><%= submission.description %></td>
         <td><%= submission.header_image %></td>
         <td><%= submission.icon_image %></td>

@@ -70,6 +70,8 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :description, :header_image, :icon_image, :start, :end, :submission_grace_period, :submission_open, :status, :submitted, :updated)
+      # Require the name start time, end time, whether the submission is open, and status
+      # FIXME: check whether the grace period is provided ONLY if :submission_open is true
+      params.require(:event).permit(:name, :start, :end, :submission_grace_period, :submission_open, :status)
     end
 end

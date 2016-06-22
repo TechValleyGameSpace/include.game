@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -36,24 +36,16 @@
     <%= f.date_select :end %>
   </div>
   <div class="field">
-    <%= f.label :submission_grace_period %><br>
-    <%= f.date_select :submission_grace_period %>
-  </div>
-  <div class="field">
     <%= f.label :submission_open %><br>
     <%= f.check_box :submission_open %>
   </div>
   <div class="field">
+    <%= f.label :submission_grace_period %><br>
+    <%= f.date_select :submission_grace_period %>
+  </div>
+  <div class="field">
     <%= f.label :status %><br>
     <%= f.number_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :submitted %><br>
-    <%= f.date_select :submitted %>
-  </div>
-  <div class="field">
-    <%= f.label :updated %><br>
-    <%= f.date_select :updated %>
   </div>
   <div class="actions">
     <%= f.submit %>
