@@ -9,8 +9,6 @@
       <th>Description</th>
       <th>Header image</th>
       <th>Icon image</th>
-      <th>Submitted</th>
-      <th>Updated</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,8 +20,6 @@
         <td><%= submission.description %></td>
         <td><%= submission.header_image %></td>
         <td><%= submission.icon_image %></td>
-        <td><%= submission.submitted %></td>
-        <td><%= submission.updated %></td>
         <td><%= link_to 'Show', submission %></td>
         <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
         <td><%= link_to 'Destroy', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
