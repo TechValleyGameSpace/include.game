@@ -29,7 +29,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/'
     else
-      redirect_to '/register'
+      # FIXME: Since there are few fields, provide flash
+      render 'new'
     end
   end
 
