@@ -14,6 +14,5 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true , length: { minimum: 2 }
   validates :password_confirmation, presence: true
   validates :password, confirmation: true, length: { minimum: 8 }
-  #FIXME: add email
-  #validates :email, presence: true, on: :create, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, on: :create, uniqueness: { case_sensitive: false }
 end
