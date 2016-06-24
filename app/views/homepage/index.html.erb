@@ -1,12 +1,13 @@
-<h1>Include.Game</h1>
+<div><%= link_to 'New Event', new_event_path %></div>
+
 <ul id="events">
   <% @events.each do |event| %>
     <li>
       <div class="name"><%= event.name %></div>
       <div class="description"><%= event.description %></div>
-      <div class="start"><%= event.start %></td>
-      <div class="end"><%= event.end %></td>
-      <td><%= link_to 'Show', event %></td>
+      <div class="start"><%= event.start %></div>
+      <div class="end"><%= event.end %></div>
+      <div><%= link_to 'Show', event %></div>
     </li>
   <% end %>
 </ul>

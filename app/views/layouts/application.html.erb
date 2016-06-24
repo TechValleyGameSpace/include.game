@@ -8,13 +8,23 @@
 </head>
 <body>
 
-<% if current_user %>
-  <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Register', '/register' %>
-<% end %>
+<h1>Include.Game</h1>
+
+<!-- Header goes here! -->
+<header>
+  <% if current_user %>
+    <!-- FIXME: add link to access user profile -->
+    <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
+  <% else %>
+    <%= link_to 'Login', '/login' %> | <%= link_to 'Register', '/register' %>
+  <% end %>
+</header>
 
 <%= yield %>
 
+<!-- Footer goes here! -->
+<footer>
+  We tried really hard to make this site!  Don't make fun of us (T_T)...
+</footer>
 </body>
 </html>
