@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # Setting up routes for registering a user
   get '/register' => 'users#new'
   post '/users' => 'users#create'
-  get '/profile/:username' => 'users#show'
+  get '/user/:username' => 'users#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
