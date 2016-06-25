@@ -4,10 +4,13 @@ class CreateUserRoleInEvents < ActiveRecord::Migration
       t.text :message
       t.integer :status
 
-      t.belongs_to :user, index: true
-      t.belongs_to :event, index: true
+      t.belongs_to :user, index: true, null: false
+      t.belongs_to :event, index: true, null: false
 
       t.timestamps null: false
     end
+
+    # Add uniqueness test on all associations
+    add_index :user_role_in_events, [:user_id, :event_id], unique: true
   end
 end
