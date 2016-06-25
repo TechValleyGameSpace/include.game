@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 20160621023957) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",                    null: false
-    t.date     "start",                   null: false
-    t.date     "end",                     null: false
+    t.datetime "start",                   null: false
+    t.datetime "end",                     null: false
     t.float    "latitude",                null: false
     t.float    "longitude",               null: false
     t.text     "description"
     t.binary   "header_image"
     t.binary   "icon_image"
-    t.date     "submission_grace_period"
+    t.time     "submission_grace_period"
     t.boolean  "submission_open",         null: false
     t.integer  "status",                  null: false
     t.datetime "created_at",              null: false
@@ -121,14 +121,18 @@ ActiveRecord::Schema.define(version: 20160621023957) do
     t.string   "email",           null: false
     t.string   "string",          null: false
     t.string   "password_digest", null: false
+    t.binary   "profile_image"
     t.string   "real_name"
     t.text     "description"
-    t.binary   "profile_image"
+    t.float    "latitude",        null: false
+    t.float    "longitude",       null: false
     t.integer  "status",          null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "users", ["latitude"], name: "index_users_on_latitude"
+  add_index "users", ["longitude"], name: "index_users_on_longitude"
   add_index "users", ["status"], name: "index_users_on_status"
   add_index "users", ["username"], name: "index_users_on_username"
 
