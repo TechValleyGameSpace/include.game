@@ -54,13 +54,13 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   # DELETE /events/1.json
-  def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+#  def destroy
+#    @event.destroy
+#    respond_to do |format|
+#      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+#      format.json { head :no_content }
+#    end
+#  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,7 +71,6 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       # Require the name start time, end time, whether the submission is open, and status
-      # FIXME: check whether the grace period is provided ONLY if :submission_open is true
-      params.require(:event).permit(:name, :start, :end, :submission_grace_period, :submission_open, :status)
+      params.require(:event).permit(:name, :start, :end, :latitude, :longitude, :description, :submission_grace_period, :submission_open, :header_image, :icon_image, :status)
     end
 end

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :submissions
   resources :teams
-  # resources :users
-  resources :events
+  resources :events, except: [:destroy] do
+    resources :submissions
+  end
   get 'homepage/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -18,8 +18,9 @@ Rails.application.routes.draw do
 
   # Setting up routes for registering a user
   get '/register' => 'users#new'
-  post '/users' => 'users#create'
+  post '/register' => 'users#create'
   get '/user/:username' => 'users#show'
+  get '/users' => 'users#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
