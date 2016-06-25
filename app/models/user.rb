@@ -1,3 +1,4 @@
+# Users should never be destroyed
 class User < ActiveRecord::Base
   #Indicate password is required here
   has_secure_password

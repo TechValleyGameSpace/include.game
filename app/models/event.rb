@@ -1,3 +1,4 @@
+# Events should never be destroyed
 class Event < ActiveRecord::Base
   has_many :submissions
   has_many :user_role_in_events
