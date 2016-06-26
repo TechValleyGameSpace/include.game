@@ -7,9 +7,9 @@ class CreateUsers < ActiveRecord::Migration
       t.binary :profile_image
       t.string :real_name
       t.text :description
-      t.float :latitude, index: true, null: false
-      t.float :longitude, index: true, null: false
-      t.integer :status, index: true, null: false
+      t.float :latitude, index: true
+      t.float :longitude, index: true
+      t.integer :status, index: true, null: false, default: 0
       t.timestamps null: false
     end
   end

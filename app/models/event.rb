@@ -1,5 +1,13 @@
 # Events should never be destroyed
 class Event < ActiveRecord::Base
+  # Define status enum
+  enum status: {
+    draft: 0,
+    canceled: 1,
+    open_to_public: 2,
+    invite_only: 3
+  }
+  
   has_many :submissions
   has_many :user_role_in_events
   has_many :users, through: :user_role_in_events

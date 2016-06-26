@@ -6,7 +6,7 @@ class CreateSubmissions < ActiveRecord::Migration
       t.text :description
       t.binary :header_image
       t.binary :icon_image
-      t.integer :status, index: true, null: false
+      t.integer :status, index: true, null: false, default: 0
 
       t.belongs_to :event, index: true, null: false
 

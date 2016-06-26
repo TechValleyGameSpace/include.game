@@ -11,7 +11,7 @@ class CreateEvents < ActiveRecord::Migration
       t.binary :icon_image
       t.time :submission_grace_period
       t.boolean :submission_open, null: false
-      t.integer :status, index: true, null: false
+      t.integer :status, index: true, null: false, default: 0
 
       t.timestamps null: false
     end

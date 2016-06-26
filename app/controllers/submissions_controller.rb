@@ -1,5 +1,6 @@
 class SubmissionsController < ApplicationController
-  before_filter :authorize, only: [:edit, :update, :destroy, :new, :create]
+  # FIXME: only allow the owner, event organizer, or admin to destroy a submission
+  before_filter :authorize_user, only: [:edit, :update, :destroy, :new, :create]
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
 
   # GET /submissions

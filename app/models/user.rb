@@ -1,5 +1,10 @@
 # Users should never be destroyed
 class User < ActiveRecord::Base
+  # Define status enum
+  enum status: [ :normal, :admin, :banned ]
+  
+  before_save :default_values
+  
   #Indicate password is required here
   has_secure_password
 
@@ -13,7 +18,12 @@ class User < ActiveRecord::Base
 
   # These are the requirements in the user
   validates :username, presence: true, uniqueness: true , length: { minimum: 2 }
-  validates :password_confirmation, presence: true
   validates :password, confirmation: true, length: { minimum: 8 }
+  validates :password_confirmation, presence: true
   validates :email, presence: true, on: :create, uniqueness: { case_sensitive: false }
+
+private
+  def default_values
+    self.status ||= NORMAL_STATUS
+  end
 end

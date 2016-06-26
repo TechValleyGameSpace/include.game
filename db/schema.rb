@@ -14,19 +14,19 @@
 ActiveRecord::Schema.define(version: 20160621023957) do
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",                    null: false
-    t.datetime "start",                   null: false
-    t.datetime "end",                     null: false
-    t.float    "latitude",                null: false
-    t.float    "longitude",               null: false
+    t.string   "name",                                null: false
+    t.datetime "start",                               null: false
+    t.datetime "end",                                 null: false
+    t.float    "latitude",                            null: false
+    t.float    "longitude",                           null: false
     t.text     "description"
     t.binary   "header_image"
     t.binary   "icon_image"
     t.time     "submission_grace_period"
-    t.boolean  "submission_open",         null: false
-    t.integer  "status",                  null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.boolean  "submission_open",                     null: false
+    t.integer  "status",                  default: 0, null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "events", ["end"], name: "index_events_on_end"
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20160621023957) do
     t.text     "description"
     t.binary   "header_image"
     t.binary   "icon_image"
-    t.integer  "status",       null: false
-    t.integer  "event_id",     null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "status",       default: 0, null: false
+    t.integer  "event_id",                 null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "submissions", ["event_id"], name: "index_submissions_on_event_id"
@@ -69,9 +69,9 @@ ActiveRecord::Schema.define(version: 20160621023957) do
     t.string   "name"
     t.text     "description"
     t.binary   "team_image"
-    t.integer  "status",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "status",      default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "teams", ["name"], name: "index_teams_on_name"
@@ -79,26 +79,28 @@ ActiveRecord::Schema.define(version: 20160621023957) do
 
   create_table "user_role_in_events", force: :cascade do |t|
     t.text     "message"
-    t.integer  "status"
-    t.integer  "user_id",    null: false
-    t.integer  "event_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status",     default: 0, null: false
+    t.integer  "user_id",                null: false
+    t.integer  "event_id",               null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "user_role_in_events", ["event_id"], name: "index_user_role_in_events_on_event_id"
+  add_index "user_role_in_events", ["status"], name: "index_user_role_in_events_on_status"
   add_index "user_role_in_events", ["user_id", "event_id"], name: "index_user_role_in_events_on_user_id_and_event_id", unique: true
   add_index "user_role_in_events", ["user_id"], name: "index_user_role_in_events_on_user_id"
 
   create_table "user_role_in_submissions", force: :cascade do |t|
     t.text     "role"
-    t.integer  "status"
-    t.integer  "user_id",       null: false
-    t.integer  "submission_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "status",        default: 0, null: false
+    t.integer  "user_id",                   null: false
+    t.integer  "submission_id",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
+  add_index "user_role_in_submissions", ["status"], name: "index_user_role_in_submissions_on_status"
   add_index "user_role_in_submissions", ["submission_id"], name: "index_user_role_in_submissions_on_submission_id"
   add_index "user_role_in_submissions", ["user_id", "submission_id"], name: "index_user_role_in_submissions_on_user_id_and_submission_id", unique: true
   add_index "user_role_in_submissions", ["user_id"], name: "index_user_role_in_submissions_on_user_id"
@@ -117,18 +119,18 @@ ActiveRecord::Schema.define(version: 20160621023957) do
   add_index "user_role_in_teams", ["user_id"], name: "index_user_role_in_teams_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "email",           null: false
-    t.string   "string",          null: false
-    t.string   "password_digest", null: false
+    t.string   "username",                    null: false
+    t.string   "email",                       null: false
+    t.string   "string",                      null: false
+    t.string   "password_digest",             null: false
     t.binary   "profile_image"
     t.string   "real_name"
     t.text     "description"
-    t.float    "latitude",        null: false
-    t.float    "longitude",       null: false
-    t.integer  "status",          null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "status",          default: 0, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "users", ["latitude"], name: "index_users_on_latitude"

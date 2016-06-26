@@ -4,31 +4,16 @@
   <title>Includegame</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'jquery', 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<!-- Header goes here! -->
-<header>
-  <%= unless current_page?(controller: 'session') %>
-    <div style="float: right;">
-    <% if current_user %>
-      <%= link_to(current_user) do %>
-        <%= current_user.username %>
-      <%= end %> | <%= link_to "Logout", '/logout' %>
-    <% else %>
-      <%= link_to 'Login', '/login' %> | <%= link_to 'Register', '/register' %>
-    <% end %>
-    </div>
-  <% end %>
-  <h1>Include.Game</h1>
-</header>
+<%= render "layouts/header" %>
 
 <%= yield %>
 
-<!-- Footer goes here! -->
-<footer>
-  We tried really hard to make this site!  Don't make fun of us (T_T)...
-</footer>
+<%= render "layouts/footer" %>
+
 </body>
 </html>

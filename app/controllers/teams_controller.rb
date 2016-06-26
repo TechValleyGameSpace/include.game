@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
-  before_filter :authorize, only: [:edit, :update, :destroy, :new, :create]
+  # FIXME: only allow the owner or admin to destroy a team
+  before_filter :authorize_user, only: [:edit, :update, :destroy, :new, :create]
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams

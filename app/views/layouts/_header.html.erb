@@ -1,0 +1,19 @@
+<header>
+  <% if current_page?(root_url) %>
+    <h1>Include.Game</h1>
+  <% else %>
+    <h1><%= link_to 'Include.Game', '/' %></h1>
+  <% end %>
+
+  <% if params[:controller] != 'sessions' and !current_page?(:controller => :users, :action => :new) %>
+    <div>
+    <% if current_user %>
+      <%= link_to(current_user) do %>
+        <% current_user.username %>
+      <% end %> | <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/login' %> | <%= link_to 'Register', :controller => :users, :action => :new %>
+    <% end %>
+    </div>
+  <% end %>
+</header>

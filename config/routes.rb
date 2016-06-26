@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users, only: [:new, :create, :show, :edit, :update]
   resources :teams
   resources :events, except: [:destroy] do
     resources :submissions
@@ -15,12 +16,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-
-  # Setting up routes for registering a user
-  get '/register' => 'users#new'
-  post '/register' => 'users#create'
-  get '/user/:username' => 'users#show'
-  get '/users' => 'users#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

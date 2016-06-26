@@ -2,7 +2,7 @@ class CreateUserRoleInSubmissions < ActiveRecord::Migration
   def change
     create_table :user_role_in_submissions do |t|
       t.text :role
-      t.integer :status
+      t.integer :status, index: true, null: false, default: 0
 
       t.belongs_to :user, index: true, null: false
       t.belongs_to :submission, index: true, null: false

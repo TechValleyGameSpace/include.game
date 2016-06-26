@@ -1,4 +1,13 @@
 class Submission < ActiveRecord::Base
+  # Define status enum
+  enum status: {
+    draft: 0,
+    visible_to_public: 1,
+    visible_to_attendees_only: 2,
+    visible_to_judges_only: 3
+  }
+  
+  # Indicate a submission must belong to an event
   belongs_to :events
 
   has_many :user_role_in_submissions, dependent: :destroy

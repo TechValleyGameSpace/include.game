@@ -1,5 +1,9 @@
 <h1>Login</h1>
 
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <%= form_for :session, url: login_path do |f| %>
 
   <div class="field">
@@ -7,10 +11,10 @@
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>>
+    <%= f.label :password %><br>
     <%= f.password_field :password %>
   </div>
   <%= f.submit "Submit" %>
 
 <% end %>
-New user? <%= link_to 'Register now!', register_path %>
+New user? <%= link_to 'Register now!', :controller => :users, :action => :new %>

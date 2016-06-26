@@ -2,7 +2,7 @@ class CreateUserRoleInEvents < ActiveRecord::Migration
   def change
     create_table :user_role_in_events do |t|
       t.text :message
-      t.integer :status
+      t.integer :status, index: true, null: false, default: 0
 
       t.belongs_to :user, index: true, null: false
       t.belongs_to :event, index: true, null: false

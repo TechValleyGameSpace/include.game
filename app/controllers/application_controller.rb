@@ -9,7 +9,15 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   # TODO: add more granularity to authorize, or outright remove this function
-  def authorize
-    redirect_to '/login' unless current_user
+  def authorize_user
+    unless current_user and !current_user.banned?
+      redirect_to '/login'
+    end
+  end
+  
+  def authorize_admin
+    unless current_user and current_user.admin?
+      redirect_to '/login'
+    end
   end
 end

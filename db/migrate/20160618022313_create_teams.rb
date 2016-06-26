@@ -4,7 +4,7 @@ class CreateTeams < ActiveRecord::Migration
       t.string :name, index: true, unique: true
       t.text :description
       t.binary :team_image
-      t.integer :status, index: true, null: false
+      t.integer :status, index: true, null: false, default: 0
 
       t.timestamps null: false
     end
