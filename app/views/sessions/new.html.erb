@@ -17,4 +17,5 @@
   <%= f.submit "Submit" %>
 
 <% end %>
-New user? <%= link_to 'Register now!', :controller => :users, :action => :new %>
+New user? <%= link_to 'Register now!', new_user_path %> |
+<%= link_to 'Back', :back %>

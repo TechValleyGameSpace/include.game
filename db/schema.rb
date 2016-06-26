@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(version: 20160621023957) do
   create_table "users", force: :cascade do |t|
     t.string   "username",                    null: false
     t.string   "email",                       null: false
-    t.string   "string",                      null: false
     t.string   "password_digest",             null: false
     t.binary   "profile_image"
     t.string   "real_name"
@@ -135,6 +134,7 @@ ActiveRecord::Schema.define(version: 20160621023957) do
 
   add_index "users", ["latitude"], name: "index_users_on_latitude"
   add_index "users", ["longitude"], name: "index_users_on_longitude"
+  add_index "users", ["real_name"], name: "index_users_on_real_name"
   add_index "users", ["status"], name: "index_users_on_status"
   add_index "users", ["username"], name: "index_users_on_username"
 

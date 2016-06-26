@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :users, param: :username, only: [:new, :create, :show, :edit, :update]
   resources :teams
   resources :events, except: [:destroy] do
     resources :submissions
