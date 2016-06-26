@@ -15,6 +15,14 @@ class Event < ActiveRecord::Base
   # These are the requirements in events
   validates :start, presence: true
   validates :end, presence: true
+  validates :address, presence: true
   validates :name, presence: true, uniqueness: { scope: [:start, :latitude, :longitude] }
   validates_associated :user_role_in_events
+  
+  validates_datetime :start, :on => :create, :after => :today
+  validates_datetime :end, :after => :start
+  
+  # Handle geo-coding
+  geocoded_by :address
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 end

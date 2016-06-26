@@ -4,8 +4,8 @@ class CreateSubmissions < ActiveRecord::Migration
     create_table :submissions do |t|
       t.string :name, index: true
       t.text :description
-      t.binary :header_image
-      t.binary :icon_image
+#      t.binary :header_image
+#      t.binary :icon_image
       t.integer :status, index: true, null: false, default: 0
 
       t.belongs_to :event, index: true, null: false

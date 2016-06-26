@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, length: { minimum: 2 }
   validates :password, length: { minimum: 8 }, allow_nil: true
   
+  # Handle geo-coding
+  geocoded_by :address
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+
   def to_param 
     username
   end

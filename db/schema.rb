@@ -14,21 +14,20 @@
 ActiveRecord::Schema.define(version: 20160621023957) do
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",                                null: false
-    t.datetime "start",                               null: false
-    t.datetime "end",                                 null: false
-    t.float    "latitude",                            null: false
-    t.float    "longitude",                           null: false
+    t.string   "name",                         null: false
+    t.datetime "start",                        null: false
+    t.datetime "end",                          null: false
+    t.string   "name_of_location"
+    t.string   "address"
+    t.float    "latitude",                     null: false
+    t.float    "longitude",                    null: false
     t.text     "description"
-    t.binary   "header_image"
-    t.binary   "icon_image"
-    t.time     "submission_grace_period"
-    t.boolean  "submission_open",                     null: false
-    t.integer  "status",                  default: 0, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "status",           default: 0, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
+  add_index "events", ["address"], name: "index_events_on_address"
   add_index "events", ["end"], name: "index_events_on_end"
   add_index "events", ["latitude"], name: "index_events_on_latitude"
   add_index "events", ["longitude"], name: "index_events_on_longitude"
@@ -40,12 +39,10 @@ ActiveRecord::Schema.define(version: 20160621023957) do
   create_table "submissions", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.binary   "header_image"
-    t.binary   "icon_image"
-    t.integer  "status",       default: 0, null: false
-    t.integer  "event_id",                 null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "status",      default: 0, null: false
+    t.integer  "event_id",                null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "submissions", ["event_id"], name: "index_submissions_on_event_id"
@@ -68,7 +65,6 @@ ActiveRecord::Schema.define(version: 20160621023957) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.binary   "team_image"
     t.integer  "status",      default: 0, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
@@ -122,9 +118,9 @@ ActiveRecord::Schema.define(version: 20160621023957) do
     t.string   "username",                    null: false
     t.string   "email",                       null: false
     t.string   "password_digest",             null: false
-    t.binary   "profile_image"
     t.string   "real_name"
     t.text     "description"
+    t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "status",          default: 0, null: false
@@ -132,6 +128,7 @@ ActiveRecord::Schema.define(version: 20160621023957) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_index "users", ["address"], name: "index_users_on_address"
   add_index "users", ["latitude"], name: "index_users_on_latitude"
   add_index "users", ["longitude"], name: "index_users_on_longitude"
   add_index "users", ["real_name"], name: "index_users_on_real_name"

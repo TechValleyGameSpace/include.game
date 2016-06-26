@@ -11,16 +11,6 @@
 </p>
 
 <p>
-  <strong>Header image:</strong>
-  <%= @event.header_image %>
-</p>
-
-<p>
-  <strong>Icon image:</strong>
-  <%= @event.icon_image %>
-</p>
-
-<p>
   <strong>Start:</strong>
   <%= @event.start %>
 </p>
@@ -31,19 +21,17 @@
 </p>
 
 <p>
-  <strong>Submission grace period:</strong>
-  <%= @event.submission_grace_period %>
-</p>
-
-<p>
-  <strong>Submission open:</strong>
-  <%= @event.submission_open %>
+  <strong>Address:</strong>
+  <%= @event.address %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= @event.status %>
 </p>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude},#{@place.longitude}&markers=#{@place.latitude},#{@place.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+              class: 'img-fluid img-rounded', alt: "#{@event.address} on the map"%>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', :back %>

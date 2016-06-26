@@ -16,10 +16,6 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
     <%= f.label :start %><br>
     <%= f.datetime_select :start %>
   </div>
@@ -28,16 +24,8 @@
     <%= f.datetime_select :end %>
   </div>
   <div class="field">
-    <%= f.label :name_of_location %><br>
-    <%= f.text_field :name_of_location %>
-  </div>
-  <div class="field">
     <%= f.label :address %><br>
     <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.select :status, Event.status.keys %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -42,10 +42,12 @@ gem 'capistrano-bundler', '>= 1.1.2'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 
-#gem 'capistrano', '~> 3.1.0'
-#gem 'capistrano-bundler', '~> 1.1.2'
-#gem 'capistrano-rails', '~> 1.1.1'
-#gem 'capistrano-rvm', github: "capistrano/rvm"
+# Being lazy: get someone else's time validation gem
+gem 'validates_timeliness', '~> 4.0'
+
+# Also being lazy: grab a pre-made web theme
+gem 'sprockets-rails', '>= 2.3.2'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 
 # Use Passenger to bind with Nginx
 gem 'passenger'
