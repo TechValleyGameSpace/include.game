@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  # FIXME: only allow the owner, event organizer, or admin to edit an event
-  before_filter :authorize_user, only: [:edit, :update, :destroy, :new, :create]
+  before_filter :authorize_user, only: [:new, :create]
+  before_filter :authorize_event_organizer, only: [:edit, :update]
+  before_filter :authorize_event_owner, only: [:destroy, :new, :create]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
@@ -35,7 +36,7 @@ class EventsController < ApplicationController
         @role.user_id = current_user.id
         @role.event_id = @event.id
         @role.status = UserRoleInEvent.statuses[:owner]
-        
+
         if @role.save
           # redirect
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -65,16 +66,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
-#  def destroy
-#    @event.destroy
-#    respond_to do |format|
-#      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-#      format.json { head :no_content }
-#    end
-#  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -86,9 +77,37 @@ class EventsController < ApplicationController
       # Require the name start time, end time, whether the submission is open, and status
       params.require(:event).permit(:name, :start, :end, :latitude, :longitude, :address)
     end
-    
+
     def event_params
       # Require the name start time, end time, whether the submission is open, and status
       params.require(:event).permit(:name, :start, :end, :latitude, :longitude, :address, :description, :submission_grace_period, :submission_open, :header_image, :icon_image, :status)
+    end
+
+    def authorize_event_organizer
+      if !current_user
+        redirect_to '/login'
+      elsif !current_user.admin?
+        set_event
+        role = @event.user_role_in_events.find_by_user(current_user)
+        if !role
+          redirect_to '/login'
+        elsif !role.owner? and !role.organizer?
+          redirect_to '/login'
+        end
+      end
+    end
+
+    def authorize_event_owner
+      if !current_user
+        redirect_to '/login'
+      elsif !current_user.admin?
+        set_event
+        role = @event.user_role_in_events.find_by_user(current_user)
+        if !role
+          redirect_to '/login'
+        elsif !role.owner?
+          redirect_to '/login'
+        end
+      end
     end
 end

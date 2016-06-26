@@ -4,7 +4,7 @@
 bundle install
 
 # Create the database
-rake db:create
+rake db:drop db:create db:migrate db:seed
 
 # Run the server as normal
 source server.sh
