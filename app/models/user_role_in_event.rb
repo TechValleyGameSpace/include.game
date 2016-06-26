@@ -4,4 +4,11 @@ class UserRoleInEvent < ActiveRecord::Base
   
   belongs_to :users
   belongs_to :events
+  
+  def username
+    user = User.find(user_id)
+    if user
+      user.username
+    end
+  end
 end

@@ -37,7 +37,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.select :status, Event.status.keys %>
+    <%= f.select :status, Event.statuses.keys %>
   </div>
   <div class="actions">
     <%= f.submit %>

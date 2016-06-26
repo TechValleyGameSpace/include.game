@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   # These are the requirements in events
   validates :start, presence: true
   validates :end, presence: true
-  validates :address, presence: true
+  validates :address, presence: true, length: { minimum: 2 }
   validates :name, presence: true, uniqueness: { scope: [:start, :latitude, :longitude] }
   validates_associated :user_role_in_events
   
@@ -24,5 +24,5 @@ class Event < ActiveRecord::Base
   
   # Handle geo-coding
   geocoded_by :address
-  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  after_validation :geocode, :if => :address_changed?
 end

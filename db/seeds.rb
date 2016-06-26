@@ -3,5 +3,5 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+admin = City.create([{ username: 'tvgs' }, { email: 'info@techvalleygamespace.com' }, { password: 'include.game' }, { password_confirmation: 'include.game' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)

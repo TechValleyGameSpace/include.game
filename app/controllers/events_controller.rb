@@ -30,8 +30,20 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        # create record of current user's role
+        @role = UserRoleInEvent.new
+        @role.user_id = current_user.id
+        @role.event_id = @event.id
+        @role.status = UserRoleInEvent.statuses[:owner]
+        
+        if @role.save
+          # redirect
+          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { render :new }
+          format.json { render json: @role.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -70,8 +82,13 @@ class EventsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def new_event_params
+      # Require the name start time, end time, whether the submission is open, and status
+      params.require(:event).permit(:name, :start, :end, :latitude, :longitude, :address)
+    end
+    
     def event_params
       # Require the name start time, end time, whether the submission is open, and status
-      params.require(:event).permit(:name, :start, :end, :latitude, :longitude, :description, :submission_grace_period, :submission_open, :header_image, :icon_image, :status)
+      params.require(:event).permit(:name, :start, :end, :latitude, :longitude, :address, :description, :submission_grace_period, :submission_open, :header_image, :icon_image, :status)
     end
 end

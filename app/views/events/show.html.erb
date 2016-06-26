@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Status:</strong>
+  <%= @event.status %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @event.name %>
 </p>
@@ -21,16 +26,23 @@
 </p>
 
 <p>
+  <strong>Attendence:</strong>
+  <ul>
+<% for role in @event.user_role_in_events %>
+    <li><strong><%= role.username %></strong> (<%= role.status %>)
+    <% if role.message %>
+      :</br><%= role.message %>
+    <% end %></li>
+<% end %>
+  </ul>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @event.address %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @event.status %>
-</p>
-
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude},#{@place.longitude}&markers=#{@place.latitude},#{@place.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@event.latitude},#{@event.longitude}&markers=#{@event.latitude},#{@event.longitude}&zoom=18&size=640x400",
               class: 'img-fluid img-rounded', alt: "#{@event.address} on the map"%>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
