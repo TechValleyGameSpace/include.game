@@ -1,4 +1,6 @@
 class UserRoleInEventsController < ApplicationController
+  before_filter :authorize_user
+  before_action :set_event
   before_action :set_user_role_in_event, only: [:edit, :update, :destroy]
 
   # GET /user_role_in_events/new
@@ -16,6 +18,8 @@ class UserRoleInEventsController < ApplicationController
     @user_role_in_event = UserRoleInEvent.new(user_role_in_event_params)
 
     respond_to do |format|
+      @user_role_in_event.user_id ||= current_user.id
+      @user_role_in_event.event_id = @event.id
       if @user_role_in_event.save
         format.html { redirect_to @user_role_in_event, notice: 'User role in event was successfully created.' }
         format.json { render :show, status: :created, location: @user_role_in_event }
@@ -54,6 +58,10 @@ class UserRoleInEventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user_role_in_event
       @user_role_in_event = UserRoleInEvent.find(params[:id])
+    end
+
+    def set_event
+      @event = Event.find(params[:event_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

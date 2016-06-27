@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   before_filter :authorize_user, only: [:new, :create]
   before_filter :authorize_event_organizer, only: [:edit, :update]
-  before_filter :authorize_event_owner, only: [:destroy, :new, :create]
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_event_owner, only: [:destroy]
+  before_action :set_event, only: [:show, :edit, :update]
 
   # GET /events
   # GET /events.json
@@ -28,6 +28,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @role = nil
 
     respond_to do |format|
       if @event.save
@@ -69,7 +70,14 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
+      # Grab the event instance
       @event = Event.find(params[:id])
+
+      # If the user is logged in, grab its role in the event
+      @role = nil
+      if current_user and
+        @role = @event.user_role_in_events.find_by(:user_id => current_user.id)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -88,10 +96,7 @@ class EventsController < ApplicationController
         redirect_to '/login'
       elsif !current_user.admin?
         set_event
-        role = @event.user_role_in_events.find_by_user(current_user)
-        if !role
-          redirect_to '/login'
-        elsif !role.owner? and !role.organizer?
+        unless @role and (@role.owner? or @role.organizer?)
           redirect_to '/login'
         end
       end
@@ -102,10 +107,7 @@ class EventsController < ApplicationController
         redirect_to '/login'
       elsif !current_user.admin?
         set_event
-        role = @event.user_role_in_events.find_by_user(current_user)
-        if !role
-          redirect_to '/login'
-        elsif !role.owner?
+        unless @role and @role.owner?
           redirect_to '/login'
         end
       end

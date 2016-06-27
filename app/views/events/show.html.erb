@@ -27,12 +27,28 @@
 
 <p>
   <strong>Attendence:</strong>
+  <% if current_user %>
+    <% if !@role %>
+      <br/><%= link_to 'RSVP', new_event_user_role_in_event_path(@event) %>
+    <% elsif !@role.owner? %>
+      <br/><%= link_to 'Cancel', event_user_role_in_event_path(@event, @role), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
   <ul>
 <% for role in @event.user_role_in_events %>
     <li><strong><%= role.username %></strong> (<%= role.status %>)
     <% if role.message %>
-      :</br><%= role.message %>
-    <% end %></li>
+      :<br/><%= role.message %>
+    <% end %>
+    <% if role == @role %>
+      <br/>
+      <% if role.message %>
+        <%= link_to 'Edit Message', edit_event_user_role_in_event_path(@event, role) %>
+      <% else %>
+        <%= link_to 'Add Message', edit_event_user_role_in_event_path(@event, role) %>
+      <% end %>
+    <% end %>
+    </li>
 <% end %>
   </ul>
 </p>
