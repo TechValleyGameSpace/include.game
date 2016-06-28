@@ -31,6 +31,18 @@
 </p>
 
 <p>
+  <strong>Submissions:</strong>
+  <% if Event::submissions_open?(@event) %>
+    <%= render 'submissions' %>
+  <% else %>
+    <ul>
+      <li>Submission will not open until <%= @event.start %>.</li>
+      <li>It is still <%= Time.current %>.</li>
+    </ul>
+  <% end %>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @event.address %>
 </p>

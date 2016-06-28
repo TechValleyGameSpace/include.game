@@ -66,6 +66,22 @@ class EventsController < ApplicationController
       end
     end
   end
+  
+  def can_edit_submission?(event_role, submission)
+    return_flag = false
+    if submission
+      if current_user
+        if current_user.admin?
+          return_flag = true
+        elsif submission.users.contains current_user
+          return_flag = true
+        end
+      elsif event_role and (event_role.organizer? or event_role.owner?)
+        return_flag = true
+      end
+    end
+    return return_flag
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

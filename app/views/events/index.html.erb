@@ -5,15 +5,9 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Header image</th>
-      <th>Icon image</th>
       <th>Start</th>
       <th>End</th>
-      <th>Submission grace period</th>
-      <th>Submission open</th>
       <th>Status</th>
-      <th>Submitted</th>
-      <th>Updated</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,12 +17,8 @@
       <tr>
         <td><%= event.name %></td>
         <td><%= event.description %></td>
-        <td><%= event.header_image %></td>
-        <td><%= event.icon_image %></td>
         <td><%= event.start %></td>
         <td><%= event.end %></td>
-        <td><%= event.submission_grace_period %></td>
-        <td><%= event.submission_open %></td>
         <td><%= event.status %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>

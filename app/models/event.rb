@@ -25,4 +25,8 @@ class Event < ActiveRecord::Base
   # Handle geo-coding
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
+  
+  def Event.submissions_open?(event)
+    Time.current.between?(event.start, event.end)
+  end
 end
