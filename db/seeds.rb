@@ -3,5 +3,7 @@
 #
 # Examples:
 #
-admin = City.create([{ username: 'tvgs' }, { email: 'info@techvalleygamespace.com' }, { password: 'include.game' }, { password_confirmation: 'include.game' }])
+User.create!(username: 'tvgs',
+  email: 'info@techvalleygamespace.com',
+  password_digest: User.digest('include.game'))
 #   Mayor.create(name: 'Emanuel', city: cities.first)
