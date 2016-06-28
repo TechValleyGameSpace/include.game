@@ -15,12 +15,7 @@
   <%= @user.description %>
 </p>
 
-<!--
-<p>
-  <strong>Profile image:</strong>
-  <%= @user.profile_image %>
-</p>
--->
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if current_user and (current_user == @user or current_user.admin?) %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', :back %>

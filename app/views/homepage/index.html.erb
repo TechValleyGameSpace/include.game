@@ -9,11 +9,10 @@
 <ul id="events">
   <% @events.each do |event| %>
     <li>
-      <div class="name"><%= event.name %></div>
+      <div class="name"><strong><%= link_to event.name, event %></strong></div>
       <div class="description"><%= event.description %></div>
       <div class="start"><%= event.start %></div>
       <div class="end"><%= event.end %></div>
-      <div><%= link_to 'Show', event %></div>
     </li>
   <% end %>
 </ul>

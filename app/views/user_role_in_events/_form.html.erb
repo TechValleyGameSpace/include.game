@@ -1,7 +1,7 @@
-<%= form_for(@user_role_in_event) do |f| %>
+<%= form_for([@event, @user_role_in_event]) do |f| %>
   <% if @user_role_in_event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user_role_in_event.errors.count, "error") %> prohibited this user_role_in_event from being saved:</h2>
+      <h2><%= pluralize(@user_role_in_event.errors.count, "error") %> prohibited this message from being saved:</h2>
 
       <ul>
       <% @user_role_in_event.errors.full_messages.each do |message| %>
@@ -11,6 +11,22 @@
     </div>
   <% end %>
 
+  <% if @can_edit_status %>
+    <% if current_page?(:controller => :user_role_in_events, :action => :new) %>
+      <div class="field">
+        <%= label_tag 'Username:' %><br>
+        <%= text_field_tag 'username' %>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :status %><br>
+      <%= f.select :status, UserRoleInEvent.statuses.keys %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :message %><br>
+    <%= f.text_area :message %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

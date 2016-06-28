@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     def create_user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
-    
+
     def update_user_params
       if !current_user and current_user.admin?
         params.require(:user).permit(:username, :email, :password, :password_confirmation, :real_name, :longitude, :latitude, :description, :profile_image, :status)
@@ -76,18 +76,18 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username, :email, :password, :password_confirmation, :real_name, :longitude, :latitude, :description, :profile_image)
       end
     end
-    
+
     def authorize_self
       # Check to see if the user is logged in
       if !current_user
         # if not, redirect to home
         redirect_to '/'
-        
+
       # Check to see if the user is an admin
       elsif !current_user.admin?
         # If not, search for the user we're trying to access
-        @user = User.find(params[:username])
-        
+        @user = User.find_by_username(params[:username])
+
         # Make sure the the logged in user is the same user we're trying to edit
         unless @user.id == current_user.id
           # if not, redirect to home

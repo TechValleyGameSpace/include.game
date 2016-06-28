@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :events, except: [:destroy] do
     resources :submissions
-    resources :user_role_in_events, only: [:new, :create, :edit, :update]
+    resources :user_role_in_events, only: [:new, :create, :edit, :update, :destroy]
   end
   get 'homepage/index'
 
