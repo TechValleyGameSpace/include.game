@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @download.name %>
+</p>
+
+<p>
+  <strong>Submission:</strong>
+  <%= @download.submission %>
+</p>
+
+<p>
+  <strong>Platforms:</strong>
+  <%= @download.platforms %>
+</p>
+
+<%= link_to 'Edit', edit_download_path(@download) %> |
+<%= link_to 'Back', downloads_path %>

@@ -1,9 +1,9 @@
-  <!-- <ul class="nav navbar-nav"> -->
-  <ul>
+  <ul class="nav navbar-nav">
+  <!-- <ul> -->
     <li><%= link_to 'Include.Game', '/' %></li>
   </ul>
-  <!-- <ul class="nav navbar-nav navbar-right"> -->
-  <ul>
+  <ul class="nav navbar-nav navbar-right">
+  <!-- <ul> -->
     <% if params[:controller] != 'sessions' and !current_page?(:controller => :users, :action => :new) %>
       <% if current_user %>
         <% unless current_page?(:controller => :users, :action => :show, :id => current_user.id) %>

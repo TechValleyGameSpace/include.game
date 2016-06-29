@@ -24,7 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Paperclip to attach files to website
-gem 'paperclip'
+gem 'paperclip', '~> 4.3.6'
 
 # Use Geocoder for storing locations
 gem 'geocoder'
@@ -46,8 +46,8 @@ gem 'capistrano-rvm'
 gem 'validates_timeliness', '~> 4.0'
 
 # Also being lazy: grab a pre-made web theme
-gem 'sprockets-rails', '>= 2.3.2'
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'sprockets-rails', '>= 2.1.4'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use Passenger to bind with Nginx
 gem 'passenger'

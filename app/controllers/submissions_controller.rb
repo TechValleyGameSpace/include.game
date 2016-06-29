@@ -19,10 +19,12 @@ class SubmissionsController < ApplicationController
     # Grab the event instance
     @event = Event.find(params[:event_id])
     @submission = Submission.new(:event_id => @event.id)
+    @submission_form = [@event, @submission]
   end
 
   # GET /submissions/1/edit
   def edit
+    @submission_form = @submission
   end
 
   # POST /submissions

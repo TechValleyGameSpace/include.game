@@ -10,6 +10,7 @@ class Submission < ActiveRecord::Base
   # Indicate a submission must belong to an event
   belongs_to :event
 
+  has_many :downloads, dependent: :destroy
   has_many :user_role_in_submissions, dependent: :destroy
   has_many :team_role_in_submissions, dependent: :destroy
   has_many :users, through: :user_role_in_submissions

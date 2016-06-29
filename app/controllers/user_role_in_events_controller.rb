@@ -8,12 +8,14 @@ class UserRoleInEventsController < ApplicationController
     # Update @can_edit_status
     update_can_edit_status
     @user_role_in_event = UserRoleInEvent.new(:event_id => @event.id)
+    @user_role_in_event_form = [@event, @user_role_in_event]
   end
 
   # GET /user_role_in_events/1/edit
   def edit
     # Update @can_edit_status
     update_can_edit_status @user_role_in_event
+    @user_role_in_event_form = @user_role_in_event
   end
 
   # POST /user_role_in_events

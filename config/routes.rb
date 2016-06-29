@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   resources :teams
   resources :events, except: [:destroy], shallow: true do
     resources :submissions, shallow: true do
-      resources :user_role_in_submissions, only: [:new, :create, :edit, :update, :destroy]
+      # TODO: consider allowing show for roles, in case the user had a lot of details
+      resources :user_role_in_submissions, except: [:index, :show]
+      resources :downloads, except: [:index]
     end
-    resources :user_role_in_events, only: [:new, :create, :edit, :update, :destroy]
+      # TODO: consider allowing show for roles, in case the user had a lot of details
+    resources :user_role_in_events, except: [:index, :show]
   end
   get 'homepage/index'
 

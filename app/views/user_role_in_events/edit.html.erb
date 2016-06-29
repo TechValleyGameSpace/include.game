@@ -1,26 +1,5 @@
 <h1>Edit participation</h1>
 
 <%= render 'form' %>
-<%= form_for(@user_role_in_event) do |f| %>
-  <% if @can_edit_status %>
-    <% if current_page?(:controller => :user_role_in_events, :action => :new) %>
-      <div class="field">
-        <%= label_tag 'Username:' %><br>
-        <%= text_field_tag 'username' %>
-      </div>
-    <% end %>
-    <div class="field">
-      <%= f.label :status %><br>
-      <%= f.select :status, UserRoleInEvent.statuses.keys %>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :message %><br>
-    <%= f.text_area :message %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
 
 <%= link_to 'Back', :back %>

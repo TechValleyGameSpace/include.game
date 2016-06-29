@@ -4,10 +4,12 @@ class UserRoleInSubmissionsController < ApplicationController
   # GET /user_role_in_submissions/new
   def new
     @user_role_in_submission = UserRoleInSubmission.new
+    @user_role_in_submission_form = [@submission, @user_role_in_submission]
   end
 
   # GET /user_role_in_submissions/1/edit
   def edit
+    @user_role_in_submission_form = @user_role_in_submission
   end
 
   # POST /user_role_in_submissions
