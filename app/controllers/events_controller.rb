@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_filter :authorize_user, only: [:new, :create]
   before_filter :authorize_event_organizer, only: [:edit, :update]
   before_filter :authorize_event_owner, only: [:destroy]
+  before_filter :authorize_event_status, only: [:show]
   before_action :set_event, only: [:show, :edit, :update]
 
   # GET /events
@@ -66,18 +67,24 @@ class EventsController < ApplicationController
       end
     end
   end
-  
-  def can_edit_submission?(event_role, submission)
+
+  def can_edit_submission?(event, event_role, submission)
     return_flag = false
-    if submission
-      if current_user
+    submission_status = Event::submissions_status(event)
+
+    # Make sure we're evaluating a submission, and the status is either opened or closed
+    if submission and (submission_status != Event::SUBMISSION_CLOSED)
+      if event_role and (event_role.organizer? or event_role.owner?)
+        # Event owners and organizers have access to submissions at all times
+        return_flag = true
+      elsif current_user
         if current_user.admin?
+          # Admins have access to submissions at all times
           return_flag = true
-        elsif submission.users.contains current_user
+        elsif submission.users.contains(current_user) and (submission_status == Event::SUBMISSION_OPEN)
+          # Regular users that developed this game has access ONLY if the submission is open
           return_flag = true
         end
-      elsif event_role and (event_role.organizer? or event_role.owner?)
-        return_flag = true
       end
     end
     return return_flag
@@ -91,7 +98,7 @@ class EventsController < ApplicationController
 
       # If the user is logged in, grab its role in the event
       @role = nil
-      if current_user and
+      if current_user
         @role = @event.user_role_in_events.find_by(:user_id => current_user.id)
       end
     end
@@ -126,6 +133,15 @@ class EventsController < ApplicationController
         unless @role and @role.owner?
           redirect_to '/login'
         end
+      end
+    end
+
+    def authorize_event_status
+      set_event
+      if @event.draft?
+        authorize_event_organizer
+      elsif @event.invite_only?
+        redirect_to '/login' unless current_user or @role
       end
     end
 end

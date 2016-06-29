@@ -32,13 +32,13 @@
 
 <p>
   <strong>Submissions:</strong>
-  <% if Event::submissions_open?(@event) %>
-    <%= render 'submissions' %>
-  <% else %>
+  <% if Event::submissions_status(@event) == Event::SUBMISSION_CLOSED %>
     <ul>
       <li>Submission will not open until <%= @event.start %>.</li>
       <li>It is still <%= Time.current %>.</li>
     </ul>
+  <% else %>
+    <%= render 'submissions' %>
   <% end %>
 </p>
 
