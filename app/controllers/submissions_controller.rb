@@ -37,9 +37,23 @@ class SubmissionsController < ApplicationController
     @submission.event_id = @event.id
 
     respond_to do |format|
-      if @submission.save!
-        format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
-        format.json { render :show, status: :created, location: @submission }
+      if @submission.save
+
+        # create record of current user's role
+        @role = UserRoleInSubmission.new
+        @role.user_id = current_user.id
+        @role.submission_id = @submission.id
+        @role.status = UserRoleInSubmission.statuses[:owner]
+
+        # Save this role
+        if @role.save
+          # redirect
+          format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
+          format.json { render :show, status: :created, location: @submission }
+        else
+          format.html { render :new }
+          format.json { render json: @role.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new }
         format.json { render json: @submission.errors, status: :unprocessable_entity }

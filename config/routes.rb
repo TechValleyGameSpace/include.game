@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
-  resources :users, except: [:destroy]
-  resources :teams
+  # Setup login
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  # Rest of the routes
   resources :events, except: [:destroy], shallow: true do
-    resources :submissions, shallow: true do
+    resources :submissions, except: [:index], shallow: true do
       # TODO: consider allowing show for roles, in case the user had a lot of details
       resources :user_role_in_submissions, except: [:index, :show]
       resources :downloads, except: [:index]
     end
-      # TODO: consider allowing show for roles, in case the user had a lot of details
+    # TODO: consider allowing show for roles, in case the user had a lot of details
     resources :user_role_in_events, except: [:index, :show]
   end
+  resources :users, except: [:destroy]
+  resources :teams
   get 'homepage/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,11 +23,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'homepage#index'
-
-  # Setup login
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
