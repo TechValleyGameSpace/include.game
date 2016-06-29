@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621023957) do
+ActiveRecord::Schema.define(version: 20160629052219) do
+
+  create_table "downloads", force: :cascade do |t|
+    t.integer  "submission_id",                 null: false
+    t.string   "name",                          null: false
+    t.integer  "ordinal",           default: 0, null: false
+    t.string   "platforms"
+    t.text     "description"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "file_fingerprint"
+    t.string   "link"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "downloads", ["name"], name: "index_downloads_on_name"
+  add_index "downloads", ["ordinal"], name: "index_downloads_on_ordinal"
+  add_index "downloads", ["platforms"], name: "index_downloads_on_platforms"
+  add_index "downloads", ["submission_id", "name"], name: "index_downloads_on_submission_id_and_name", unique: true
+  add_index "downloads", ["submission_id"], name: "index_downloads_on_submission_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "name",                         null: false
