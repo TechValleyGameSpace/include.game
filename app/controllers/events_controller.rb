@@ -121,7 +121,7 @@ class EventsController < ApplicationController
       elsif !current_user.admin?
         set_event
         unless @role and (@role.owner? or @role.organizer?)
-          redirect_to '/login'
+          redirect_to '/'
         end
       end
     end

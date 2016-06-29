@@ -8,6 +8,8 @@ class UserRoleInEventsController < ApplicationController
     # Update @can_edit_status
     update_can_edit_status
     @user_role_in_event = UserRoleInEvent.new(:event_id => @event.id)
+
+    # Update form
     @user_role_in_event_form = [@event, @user_role_in_event]
   end
 
@@ -15,6 +17,8 @@ class UserRoleInEventsController < ApplicationController
   def edit
     # Update @can_edit_status
     update_can_edit_status @user_role_in_event
+
+    # Update form
     @user_role_in_event_form = @user_role_in_event
   end
 
@@ -36,6 +40,9 @@ class UserRoleInEventsController < ApplicationController
     @user_role_in_event.user_id ||= user.id
     @user_role_in_event.event_id = @event.id
 
+    # Update form
+    @user_role_in_event_form = [@event, @user_role_in_event]
+
     respond_to do |format|
       if @user_role_in_event.save
         format.html { redirect_to @event, notice: 'User signed in.' }
@@ -50,8 +57,12 @@ class UserRoleInEventsController < ApplicationController
   # PATCH/PUT /user_role_in_events/1
   # PATCH/PUT /user_role_in_events/1.json
   def update
+    # Update form
+    @user_role_in_event_form = @user_role_in_event
+
     # Update @can_edit_status
     update_can_edit_status @user_role_in_event
+
     respond_to do |format|
       if @user_role_in_event.update(user_role_in_event_params)
         format.html { redirect_to @event, notice: 'Message updated.' }
