@@ -11,6 +11,22 @@
     </div>
   <% end %>
 
+  <% if @can_edit_status %>
+    <% if current_page?(:controller => :user_role_in_submissions, :action => :new) %>
+      <div class="field">
+        <%= label_tag 'Username:' %><br>
+        <%= text_field_tag 'username' %>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :status %><br>
+      <%= f.select :status, UserRoleInSubmissions.statuses.keys %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :role %><br>
+    <%= f.text_field :role %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

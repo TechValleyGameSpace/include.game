@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Submission For:</strong>
+  <%= link_to @event.name, @event %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @submission.name %>
 </p>
@@ -11,13 +16,13 @@
 </p>
 
 <p>
-  <strong>Submitted By:</strong>
-  <%= render 'roles' %>
+  <strong>Downloads:</strong>
+  <%= render 'downloads' %>
 </p>
 
 <p>
-  <strong>Submission For:</strong>
-  <%= link_to @event.name, @event %>
+  <strong>Submitted By:</strong>
+  <%= render 'roles' %>
 </p>
 
 <%= link_to 'Edit', edit_submission_path(@submission) %> |

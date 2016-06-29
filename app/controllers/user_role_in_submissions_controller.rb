@@ -131,7 +131,7 @@ class UserRoleInSubmissionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user_role_in_submission
       @user_role_in_submission = UserRoleInSubmission.find(params[:id])
-      @submission = Submission.find(params[:submission_id])
+      @submission = @user_role_in_submission.submission
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

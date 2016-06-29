@@ -81,7 +81,7 @@ class EventsController < ApplicationController
         if current_user.admin?
           # Admins have access to submissions at all times
           return_flag = true
-        elsif submission.users.contains(current_user) and (submission_status == Event::SUBMISSION_OPEN)
+        elsif submission.users.include?(current_user) and (submission_status == Event::SUBMISSION_OPEN)
           # Regular users that developed this game has access ONLY if the submission is open
           return_flag = true
         end

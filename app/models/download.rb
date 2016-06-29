@@ -1,9 +1,4 @@
 class Download < ActiveRecord::Base
-  belongs_to :submission
-
-  has_attached_file :file
-  validates_attachment :file, :size => { :less_than => 50.megabytes }, :content_type => { :content_type => SUPPORTED_CONTENTS }
-
   SUPPORTED_CONTENTS = [
     # Images
     'image/jpeg',
@@ -82,6 +77,10 @@ class Download < ActiveRecord::Base
     'application/x-msdownload',
     'application/x-rar-compressed',
     'application/x-tar',
-    'application/vnd.unity'
-  ]
+    'application/vnd.unity']
+
+  belongs_to :submission
+
+  has_attached_file :file
+  validates_attachment :file, :size => { :less_than => 50.megabytes }, :content_type => { :content_type => SUPPORTED_CONTENTS }
 end

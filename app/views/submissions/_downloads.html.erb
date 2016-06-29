@@ -1,0 +1,31 @@
+<ul>
+  <% if current_user and @role %>
+    <li><%= link_to 'Add a downloadable', new_submission_download_path(@submission) %></li>
+  <% end %>
+  <% for download in @submission.downloads %>
+    <li><strong>
+    <% if download.file and !download.file.blank? %>
+      <%= link_to download.name, download.file.url %>
+    <% elsif download.link and !download.link.blank? %>
+      <%= link_to download.name, download.link %>
+    <% else %>
+      <%= download.name %>
+    <% end %>
+    </strong>
+
+    <% if download.file_fingerprint and !download.file_fingerprint.blank? %>
+      <br/>MD5: <%= download.file_fingerprint %>
+    <% end %>
+
+    <% if download.platforms and !download.platforms.blank? %>
+      <br/>Supports: <%= download.platforms %>
+    <% end %>
+
+    <br/><%= link_to 'More Info', download_path(download) %>
+    <% if current_user and @role %>
+      | <%= link_to 'Edit', edit_download_path(download) %>
+      | <%= link_to 'Delete', download_path(download), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>

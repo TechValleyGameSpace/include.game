@@ -6,17 +6,17 @@
     <li><strong><%= link_to role.associated_username, role.associated_user %></strong> | <%= role.status %>
     <% if @role %>
       <% if role == @role %>
-        <% if role.message %>
-          | <%= link_to 'Edit Message', edit_submission_user_role_in_submission_path(@submission, role) %>
+        <% if role.role %>
+          | <%= link_to 'Edit Message', edit_user_role_in_submission_path(role) %>
         <% else %>
-          | <%= link_to 'Add Message', edit_submission_user_role_in_submission_path(@submission, role) %>
+          | <%= link_to 'Add Message', edit_user_role_in_submission_path(role) %>
         <% end %>
       <% elsif @role.owner? %>
-        | <%= link_to 'Edit Info', edit_submission_user_role_in_submission_path(@submission, role) %>
+        | <%= link_to 'Edit Info', edit_user_role_in_submission_path(role) %>
       <% end %>
     <% end %>
-    <% if role.message %>
-      <br/><%= role.message %>
+    <% if role.role %>
+      <br/><%= role.role %>
     <% end %>
     </li>
   <% end %>

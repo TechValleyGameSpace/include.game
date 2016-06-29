@@ -25,6 +25,7 @@ class DownloadsController < ApplicationController
 
     @submission = Submission.find(params[:submission_id])
     @download.submission_id = @submission.id;
+    @download_form = [@submission, @download]
 
     respond_to do |format|
       if @download.save
@@ -42,7 +43,7 @@ class DownloadsController < ApplicationController
   def update
     respond_to do |format|
       if @download.update(download_params)
-        format.html { redirect_to @submission, notice: 'Download was successfully updated.' }
+        format.html { redirect_to @download, notice: 'Download was successfully updated.' }
         format.json { render :show, status: :ok, location: @download }
       else
         format.html { render :edit }
@@ -65,10 +66,11 @@ class DownloadsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_download
       @download = Download.find(params[:id])
+      @submission = @download.submission
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def download_params
-      params.require(:download).permit(:name, :submission_id, :platforms)
+      params.require(:download).permit(:name, :platforms, :link, :file, :description)
     end
 end

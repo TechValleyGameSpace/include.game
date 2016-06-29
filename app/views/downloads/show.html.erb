@@ -1,19 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<% if @download.file and !@download.file.blank? %>
+  <p><strong><%= link_to 'Link', @download.file.url %></strong></p>
+<% elsif @download.link and !@download.link.blank? %>
+  <p><strong><%= link_to 'Link', @download.link %></strong></p>
+<% end %>
+
 <p>
-  <strong>Name:</strong>
+  <strong>Name:</strong><br/>
   <%= @download.name %>
 </p>
 
 <p>
-  <strong>Submission:</strong>
-  <%= @download.submission %>
+  <strong>Submission:</strong><br/>
+  <%= link_to @submission.name, @submission %>
 </p>
 
 <p>
-  <strong>Platforms:</strong>
+  <strong>Platforms:</strong><br/>
   <%= @download.platforms %>
 </p>
 
+<p>
+  <strong>Description:</strong>
+  <%= @download.description %>
+</p>
+
 <%= link_to 'Edit', edit_download_path(@download) %> |
-<%= link_to 'Back', downloads_path %>
+<%= link_to 'Back', @submission %>
