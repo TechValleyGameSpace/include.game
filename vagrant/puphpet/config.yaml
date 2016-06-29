@@ -92,6 +92,9 @@ server:
         - nano
         - libpq-dev
         - build-essential
+        - imagemagick
+        - ghostscript
+        - libgs-dev
 users_groups:
     install: '1'
     groups: {  }
