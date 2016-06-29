@@ -1,24 +1,20 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div id="navbar" class="navbar-header">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Include.Game', '/', id: "logo"%></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if params[:controller] != 'sessions' and !current_page?(:controller => :users, :action => :new) %>
-          <% if current_user %>
-            <% unless current_page?(:controller => :users, :action => :show, :id => current_user.id) %>
-              <li><%= link_to current_user.username, :controller => :users, :action => :show, :id => current_user.id %></li>
-            <% else %>
-              <li><%= current_user.username %></li>
-            <% end %>
-            <li><%= link_to "Logout", '/logout' %></li>
-          <% else %>
-            <li><%= link_to 'Login', '/login' %></li>
-            <li><%= link_to 'Register', new_user_path %></li>
-          <% end %>
+  <!-- <ul class="nav navbar-nav"> -->
+  <ul>
+    <li><%= link_to 'Include.Game', '/' %></li>
+  </ul>
+  <!-- <ul class="nav navbar-nav navbar-right"> -->
+  <ul>
+    <% if params[:controller] != 'sessions' and !current_page?(:controller => :users, :action => :new) %>
+      <% if current_user %>
+        <% unless current_page?(:controller => :users, :action => :show, :id => current_user.id) %>
+          <li><%= link_to current_user.username, :controller => :users, :action => :show, :id => current_user.id %></li>
+        <% else %>
+          <li><%= current_user.username %></li>
         <% end %>
-      </ul>
-    </div>
-  </div>
-</nav>
+        <li><%= link_to "Logout", '/logout' %></li>
+      <% else %>
+        <li><%= link_to 'Login', '/login' %></li>
+        <li><%= link_to 'Register', new_user_path %></li>
+      <% end %>
+    <% end %>
+  </ul>

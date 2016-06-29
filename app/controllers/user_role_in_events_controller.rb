@@ -88,18 +88,19 @@ class UserRoleInEventsController < ApplicationController
     end
 
     def get_event
-      @event = nil
+      returnEvent = nil
       if @user_role_in_event
-        @event = @user_role_in_event.event
+        returnEvent = @user_role_in_event.event
       elsif params[:event_id]
-        @event = Event.find(params[:event_id])
+        returnEvent = Event.find(params[:event_id])
       end
-      @event
+      return returnEvent
     end
 
     def update_can_edit_status(event_role = nil)
       # Check to see if the currently-logged-in user is the owner
-      current_user_role = UserRoleInEvent.find_by(:event_id => get_event.id, :user_id => current_user.id)
+      @event = get_event
+      current_user_role = UserRoleInEvent.find_by(:event_id => @event.id, :user_id => current_user.id)
       if current_user_role and current_user_role.owner?
         if !event_role
           # if so, this user can edit status
