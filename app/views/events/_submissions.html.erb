@@ -3,10 +3,10 @@
     <li><%= link_to 'Add Submission', new_event_submission_path(@event) %></li>
   <% end %>
   <% for submission in @event.submissions %>
-    <li><strong><%= link_to submission.name, event_submission_path(@event, submission) %></strong> | <%= submission.status %>
+    <li><strong><%= link_to submission.name, submission_path(submission) %></strong> | <%= submission.status %>
     <% if can_edit_submission?(@event, @role, submission) %>
-        | <%= link_to 'Edit', edit_event_submission_path(@event, submission) %>
-        | <%= link_to 'Delete', event_submission_path(@event, submission), method: :delete, data: { confirm: 'Are you sure?' } %>
+        | <%= link_to 'Edit', edit_submission_path(submission) %>
+        | <%= link_to 'Delete', submission_path(submission), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     </li>
   <% end %>

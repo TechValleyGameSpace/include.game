@@ -36,7 +36,7 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save!
-        format.html { redirect_to [@event, @submission], notice: 'Submission was successfully created.' }
+        format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
         format.json { render :show, status: :created, location: @submission }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class SubmissionsController < ApplicationController
   def update
     respond_to do |format|
       if @submission.update(submission_params)
-        format.html { redirect_to [@event, @submission], notice: 'Submission was successfully updated.' }
+        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
         format.json { render :show, status: :ok, location: @submission }
       else
         format.html { render :edit }
@@ -72,12 +72,11 @@ class SubmissionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_submission
-      # Grab the event instance
-      @event = Event.find(params[:event_id])
-
       # Grab submission instance
-      #@submission = Submission.find_by(:name => params[:name], :event_id => @event.id)
       @submission = Submission.find(params[:id])
+
+      # Grab the event instance
+      @event = @submission.event
 
       # If the user is logged in, grab its role in the event
       @role = nil

@@ -20,6 +20,5 @@
   <%= link_to @event.name, @event %>
 </p>
 
-<%= link_to 'Edit', edit_event_submission_path(@event, @submission) %> |
-<%= link_to 'Delete', event_submission_path(@event, submission), method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', :back %>
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Delete', submission_path(@submission), method: :delete, data: { confirm: 'Are you sure?' } %>

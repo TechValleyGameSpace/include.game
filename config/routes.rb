@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :users, except: [:destroy]
   resources :teams
-  resources :events, except: [:destroy] do
-    resources :submissions do
+  resources :events, except: [:destroy], shallow: true do
+    resources :submissions, shallow: true do
       resources :user_role_in_submissions, only: [:new, :create, :edit, :update, :destroy]
     end
     resources :user_role_in_events, only: [:new, :create, :edit, :update, :destroy]

@@ -5,7 +5,7 @@
     <% elsif @role.owner? %>
       <li><%= link_to 'Add Participant', new_event_user_role_in_event_path(@event) %></li>
     <% else %>
-      <li><%= link_to 'Cancel', event_user_role_in_event_path(@event, @role), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <li><%= link_to 'Cancel', user_role_in_event_path(@role), method: :delete, data: { confirm: 'Are you sure?' } %></li>
     <% end %>
   <% else %>
     <li><%= link_to 'Login to RSVP', '/login' %></li>
@@ -15,12 +15,12 @@
     <% if @role %>
       <% if role == @role %>
         <% if role.message %>
-          | <%= link_to 'Edit Message', edit_event_user_role_in_event_path(@event, role) %>
+          | <%= link_to 'Edit Message', edit_user_role_in_event_path(role) %>
         <% else %>
-          | <%= link_to 'Add Message', edit_event_user_role_in_event_path(@event, role) %>
+          | <%= link_to 'Add Message', edit_user_role_in_event_path(role) %>
         <% end %>
       <% elsif @role.owner? %>
-        | <%= link_to 'Edit Info', edit_event_user_role_in_event_path(@event, role) %>
+        | <%= link_to 'Edit Info', edit_user_role_in_event_path(role) %>
       <% end %>
     <% end %>
     <% if role.message %>

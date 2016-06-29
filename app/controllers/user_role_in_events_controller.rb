@@ -1,6 +1,6 @@
 class UserRoleInEventsController < ApplicationController
   before_filter :authorize_user
-  before_action :set_event
+  before_action :set_can_edit_status
   before_action :set_user_role_in_event, only: [:edit, :update, :destroy]
 
   # GET /user_role_in_events/new
@@ -79,9 +79,7 @@ class UserRoleInEventsController < ApplicationController
       @user_role_in_event = UserRoleInEvent.find(params[:id])
     end
 
-    def set_event
-      @event = Event.find(params[:event_id])
-
+    def set_can_edit_status
       # check if the current user can edit status messages
       @can_edit_status = false
       if current_user and current_user.admin?
@@ -89,9 +87,19 @@ class UserRoleInEventsController < ApplicationController
       end
     end
 
+    def get_event
+      @event = nil
+      if @user_role_in_event
+        @event = @user_role_in_event.event
+      elsif params[:event_id]
+        @event = Event.find(params[:event_id])
+      end
+      @event
+    end
+
     def update_can_edit_status(event_role = nil)
       # Check to see if the currently-logged-in user is the owner
-      current_user_role = UserRoleInEvent.find_by(:event_id => @event.id, :user_id => current_user.id)
+      current_user_role = UserRoleInEvent.find_by(:event_id => get_event.id, :user_id => current_user.id)
       if current_user_role and current_user_role.owner?
         if !event_role
           # if so, this user can edit status
