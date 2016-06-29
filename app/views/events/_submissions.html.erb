@@ -4,7 +4,7 @@
   <% end %>
   <% for submission in @event.submissions %>
     <li><strong><%= link_to submission.name, event_submission_path(@event, submission) %></strong> | <%= submission.status %>
-    <% if can_edit_submission?(@role, submission) %>
+    <% if can_edit_submission?(@event, @role, submission) %>
         | <%= link_to 'Edit', edit_event_submission_path(@event, submission) %>
         | <%= link_to 'Delete', event_submission_path(@event, submission), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>

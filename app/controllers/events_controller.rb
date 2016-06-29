@@ -89,6 +89,7 @@ class EventsController < ApplicationController
     end
     return return_flag
   end
+  helper_method :can_edit_submission?
 
   private
     # Use callbacks to share common setup or constraints between actions.

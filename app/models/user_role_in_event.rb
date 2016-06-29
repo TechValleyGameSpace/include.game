@@ -2,8 +2,8 @@ class UserRoleInEvent < ActiveRecord::Base
   # Define status enum
   enum status: [ :participant, :owner, :organizer, :judge, :invited ]
 
-  belongs_to :users
-  belongs_to :events
+  belongs_to :user
+  belongs_to :event
 
   def associated_user
     if user_id

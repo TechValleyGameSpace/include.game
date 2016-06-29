@@ -10,15 +10,5 @@
   <%= @submission.description %>
 </p>
 
-<p>
-  <strong>Header image:</strong>
-  <%= @submission.header_image %>
-</p>
-
-<p>
-  <strong>Icon image:</strong>
-  <%= @submission.icon_image %>
-</p>
-
-<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Edit', edit_event_submission_path(@event, @submission) %> |
 <%= link_to 'Back', :back %>

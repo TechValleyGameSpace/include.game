@@ -16,7 +16,9 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/new
   def new
-    @submission = Submission.new
+    # Grab the event instance
+    @event = Event.find(params[:event_id])
+    @submission = Submission.new(:event_id => @event.id)
   end
 
   # GET /submissions/1/edit
@@ -28,9 +30,13 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(submission_params)
 
+    # Grab the event instance
+    @event = Event.find(params[:event_id])
+    @submission.event_id = @event.id
+
     respond_to do |format|
-      if @submission.save
-        format.html { redirect_to @submission, notice: 'Submission was successfully created.' }
+      if @submission.save!
+        format.html { redirect_to [@event, @submission], notice: 'Submission was successfully created.' }
         format.json { render :show, status: :created, location: @submission }
       else
         format.html { render :new }
@@ -44,7 +50,7 @@ class SubmissionsController < ApplicationController
   def update
     respond_to do |format|
       if @submission.update(submission_params)
-        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
+        format.html { redirect_to [@event, @submission], notice: 'Submission was successfully updated.' }
         format.json { render :show, status: :ok, location: @submission }
       else
         format.html { render :edit }
@@ -66,11 +72,22 @@ class SubmissionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_submission
+      # Grab the event instance
+      @event = Event.find(params[:event_id])
+
+      # Grab submission instance
+      #@submission = Submission.find_by(:name => params[:name], :event_id => @event.id)
       @submission = Submission.find(params[:id])
+
+      # If the user is logged in, grab its role in the event
+      @role = nil
+      if current_user
+        @role = @submission.user_role_in_submissions.find_by(:user_id => current_user.id)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
-      params.require(:submission).permit(:name, :description, :header_image, :icon_image, :status)
+      params.require(:submission).permit(:name, :description, :status)
     end
 end
