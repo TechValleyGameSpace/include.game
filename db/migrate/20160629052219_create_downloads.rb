@@ -16,7 +16,7 @@ class CreateDownloads < ActiveRecord::Migration
     end
 
     # Add uniqueness test on names (based on submission)
-    add_index :downloads, [:submission, :name], unique: true
-    #add_index :downloads, [:submission, :ordinal], unique: true
+    add_index :downloads, [:submission_id, :name], unique: true
+    #add_index :downloads, [:submission_id, :ordinal], unique: true
   end
 end
