@@ -64,7 +64,7 @@ class SubmissionsController < ApplicationController
   def destroy
     @submission.destroy
     respond_to do |format|
-      format.html { redirect_to submissions_url, notice: 'Submission was successfully destroyed.' }
+      format.html { redirect_to @event, notice: 'Submission was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

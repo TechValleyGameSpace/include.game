@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :users, param: :username, only: [:new, :create, :show, :edit, :update]
+  resources :users, only: [:new, :create, :show, :edit, :update]
   resources :teams
   resources :events, except: [:destroy] do
-    resources :submissions
+    resources :submissions do
+      resources :user_role_in_submissions, only: [:new, :create, :edit, :update, :destroy]
+    end
     resources :user_role_in_events, only: [:new, :create, :edit, :update, :destroy]
   end
   get 'homepage/index'

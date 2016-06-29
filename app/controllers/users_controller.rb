@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find_by_username(params[:username])
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
       # Check to see if the user is an admin
       elsif !current_user.admin?
         # If not, search for the user we're trying to access
-        @user = User.find_by_username(params[:username])
+        @user = User.find(params[:id])
 
         # Make sure the the logged in user is the same user we're trying to edit
         unless @user.id == current_user.id

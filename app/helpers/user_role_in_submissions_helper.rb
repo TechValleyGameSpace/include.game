@@ -1,0 +1,2 @@
+module UserRoleInSubmissionsHelper
+end

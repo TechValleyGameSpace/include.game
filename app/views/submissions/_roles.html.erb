@@ -1,0 +1,23 @@
+<ul>
+  <% if current_user and @role and @role.owner? %>
+    <li><%= link_to 'Add Contributor', new_submission_user_role_in_submission_path(@submission) %></li>
+  <% end %>
+  <% for role in @submission.user_role_in_submissions %>
+    <li><strong><%= link_to role.associated_username, role.associated_user %></strong> | <%= role.status %>
+    <% if @role %>
+      <% if role == @role %>
+        <% if role.message %>
+          | <%= link_to 'Edit Message', edit_submission_user_role_in_submission_path(@submission, role) %>
+        <% else %>
+          | <%= link_to 'Add Message', edit_submission_user_role_in_submission_path(@submission, role) %>
+        <% end %>
+      <% elsif @role.owner? %>
+        | <%= link_to 'Edit Info', edit_submission_user_role_in_submission_path(@submission, role) %>
+      <% end %>
+    <% end %>
+    <% if role.message %>
+      <br/><%= role.message %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
